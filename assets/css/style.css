@@ -1,0 +1,137 @@
+/* Reset mínimo */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base da página */
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  color: #222;
+  background-color: #fafafa;
+}
+
+/* Container central */
+.container {
+  width: min(1000px, 92%);
+  margin: 0 auto;
+}
+
+/* Header e navegação */
+.site-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 24px;
+}
+
+.brand {
+  font-size: 1.1rem;
+  padding-top: 16px;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0 16px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #222;
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.nav-link.is-active {
+  font-weight: 600;
+  background-color: #f0f0f0;
+}
+
+/* Painéis */
+.panel {
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.panel-title {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+/* Períodos e tarefas */
+.periodo {
+  margin-top: 16px;
+}
+
+.periodo-title {
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.tarefas {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+/* Card de tarefa */
+.tarefa {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tarefa-title {
+  font-size: 1rem;
+}
+
+.tarefa-meta {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* Tags */
+.tarefa-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+/* Estados visuais simples */
+.status-feita {
+  opacity: 0.7;
+}
+
+.status-bloqueada {
+  opacity: 0.6;
+}
+
+/* Rodapé */
+.site-footer {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 32px;
+}
+
+.footnote {
+  font-size: 0.85rem;
+  color: #555;
+  padding: 16px 0;
+}
