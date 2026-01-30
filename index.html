@@ -8,6 +8,7 @@
 </head>
 <body>
 
+  <!-- HEADER / LAYOUT BASE -->
   <header class="site-header">
     <div class="container">
       <h1 class="brand">Checklist Inteligente de Rotina</h1>
@@ -21,61 +22,123 @@
     </div>
   </header>
 
-  <main class="container">
+  <!-- ESTADO DO DIA -->
+  <main class="container" data-estado-dia="em_execucao">
+
     <section class="panel">
       <h2 class="panel-title">Dashboard do dia</h2>
-      <p class="hint">Versão inicial (HTML/CSS). Estrutura preparada para lógica futura.</p>
+      <p class="hint">
+        Versão inicial (HTML/CSS). Estrutura preparada para lógica futura.
+      </p>
     </section>
 
-    <!-- Período do dia: Manhã -->
-    <section class="periodo">
+    <!-- ========================= -->
+    <!-- PERÍODO: MANHÃ -->
+    <!-- ========================= -->
+    <section
+      class="periodo estado-normal"
+      data-estado-periodo="normal"
+    >
       <h3 class="periodo-title">Manhã</h3>
 
       <ul class="lista-tarefas">
         <li>
-          <article class="tarefa">
+          <article
+            class="tarefa status-pendente tipo-fixa prioridade-p1 categoria-saude"
+            data-status="pendente"
+            data-tipo="fixa"
+            data-prioridade="p1"
+            data-categoria="saude"
+            data-tem-dependencia="nao"
+          >
             <h4 class="tarefa-titulo">Hidratar + café</h4>
-            <p class="tarefa-meta">Categoria: Saúde | Prioridade: Alta | Tipo: Fixa | Status: Pendente</p>
-            <p class="tarefa-restricoes">Observações: fazer logo ao acordar.</p>
+
+            <p class="tarefa-meta">
+              Categoria: Saúde | Prioridade: Alta | Tipo: Fixa | Status: Pendente
+            </p>
+
+            <p class="tarefa-restricoes">
+              Observações: fazer logo ao acordar.
+            </p>
           </article>
         </li>
       </ul>
     </section>
 
-    <!-- Período do dia: Tarde -->
-    <section class="periodo">
+    <!-- ========================= -->
+    <!-- PERÍODO: TARDE -->
+    <!-- ========================= -->
+    <section
+      class="periodo estado-normal"
+      data-estado-periodo="normal"
+    >
       <h3 class="periodo-title">Tarde</h3>
 
       <ul class="lista-tarefas">
         <li>
-          <article class="tarefa">
+          <article
+            class="tarefa status-pendente tipo-variavel prioridade-p2 categoria-estudo"
+            data-status="pendente"
+            data-tipo="variavel"
+            data-prioridade="p2"
+            data-categoria="estudo"
+            data-tem-dependencia="nao"
+          >
             <h4 class="tarefa-titulo">Estudo (30 min)</h4>
-            <p class="tarefa-meta">Categoria: Estudos | Prioridade: Média | Tipo: Variável | Status: Pendente</p>
-            <p class="tarefa-restricoes">Observações: ajustar se houver imprevisto.</p>
+
+            <p class="tarefa-meta">
+              Categoria: Estudos | Prioridade: Média | Tipo: Variável | Status: Pendente
+            </p>
+
+            <p class="tarefa-restricoes">
+              Observações: ajustar se houver imprevisto.
+            </p>
           </article>
         </li>
       </ul>
     </section>
 
-    <!-- Período do dia: Noite -->
-    <section class="periodo">
+    <!-- ========================= -->
+    <!-- PERÍODO: NOITE -->
+    <!-- ========================= -->
+    <section
+      class="periodo estado-normal"
+      data-estado-periodo="normal"
+    >
       <h3 class="periodo-title">Noite</h3>
 
       <ul class="lista-tarefas">
         <li>
-          <article class="tarefa">
+          <article
+            class="tarefa status-feita tipo-variavel prioridade-p3 categoria-casa"
+            data-status="feita"
+            data-tipo="variavel"
+            data-prioridade="p3"
+            data-categoria="casa"
+            data-tem-dependencia="nao"
+          >
             <h4 class="tarefa-titulo">Organização rápida</h4>
-            <p class="tarefa-meta">Categoria: Casa | Prioridade: Baixa | Tipo: Variável | Status: Feita</p>
-            <p class="tarefa-restricoes">Observações: 10 minutos.</p>
+
+            <p class="tarefa-meta">
+              Categoria: Casa | Prioridade: Baixa | Tipo: Variável | Status: Feita
+            </p>
+
+            <p class="tarefa-restricoes">
+              Observações: 10 minutos.
+            </p>
           </article>
         </li>
       </ul>
     </section>
+
   </main>
 
+  <!-- FOOTER / LAYOUT BASE -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footnote">Projeto autoral — versão inicial (HTML/CSS).</p>
+      <p class="footnote">
+        Projeto autoral — versão inicial (HTML/CSS).
+      </p>
     </div>
   </footer>
 
