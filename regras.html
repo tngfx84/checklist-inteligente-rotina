@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 <body>
+
+  <!-- HEADER / LAYOUT BASE -->
   <header class="site-header">
     <div class="container">
       <h1 class="brand">Checklist Inteligente de Rotina</h1>
@@ -20,24 +22,80 @@
     </div>
   </header>
 
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="container">
-    <section class="panel">
-      <h2 class="panel-title">Regras de adaptação</h2>
-      <p class="hint">Placeholder (HTML/CSS). Nesta fase, esta página documenta as regras do sistema — a automação virá em JavaScript e, depois, em back-end.</p>
 
-      <ul class="list">
-        <li><strong>Ordenação padrão:</strong> período → prioridade → tipo (fixa antes de variável)</li>
-        <li><strong>Atraso:</strong> reavaliar tarefas variáveis e rebaixar as de menor prioridade</li>
-        <li><strong>Imprevisto:</strong> inserir uma tarefa extraordinária e reorganizar o restante</li>
-        <li><strong>Dependências:</strong> tarefas dependentes podem ficar “bloqueadas”</li>
+    <section class="panel">
+      <h2 class="panel-title">Regras do sistema</h2>
+
+      <p class="hint">
+        Nesta fase (HTML/CSS), as regras são documentadas como referência.
+        Elas não são executadas automaticamente.
+        Este conteúdo servirá de base direta para implementação futura
+        em JavaScript e back-end (.NET).
+      </p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- ORDENAÇÃO PADRÃO -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>Ordenação padrão</h3>
+      <ul>
+        <li>As tarefas são organizadas primeiramente por período do dia.</li>
+        <li>Dentro de cada período, tarefas de maior prioridade vêm primeiro.</li>
+        <li>Tarefas do tipo <strong>fixa</strong> têm precedência sobre tarefas <strong>variáveis</strong>.</li>
       </ul>
     </section>
+
+    <!-- ========================= -->
+    <!-- REGRAS DE ADAPTAÇÃO -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>Regras de adaptação</h3>
+      <ul>
+        <li>
+          Se um período estiver marcado como <strong>cheio</strong> ou <strong>comprometido</strong>,
+          tarefas variáveis de baixa prioridade podem ser movidas para o estado <em>adiada</em>.
+        </li>
+        <li>
+          Se uma tarefa possuir dependência não atendida,
+          ela deve ser marcada com o status <strong>bloqueada</strong>.
+        </li>
+        <li>
+          Em caso de imprevisto, uma nova tarefa extraordinária pode ser inserida,
+          e a ordem das tarefas do período deve ser recalculada.
+        </li>
+      </ul>
+    </section>
+
+    <!-- ========================= -->
+    <!-- REGRA DE CONSISTÊNCIA -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>Regra de consistência</h3>
+      <ul>
+        <li>
+          Tarefas fixas não devem ser removidas do dia.
+        </li>
+        <li>
+          Caso não possam ser executadas no período original,
+          elas podem mudar de período ou de estado,
+          mas permanecem registradas na rotina.
+        </li>
+      </ul>
+    </section>
+
   </main>
 
+  <!-- FOOTER / LAYOUT BASE -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footnote">Projeto autoral — versão inicial (HTML/CSS).</p>
+      <p class="footnote">
+        Projeto autoral — versão inicial (HTML/CSS).
+      </p>
     </div>
   </footer>
+
 </body>
 </html>
