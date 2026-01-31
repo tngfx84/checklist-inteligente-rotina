@@ -8,6 +8,7 @@
 </head>
 <body>
 
+  <!-- HEADER / LAYOUT BASE -->
   <header class="site-header">
     <div class="container">
       <h1 class="brand">Checklist Inteligente de Rotina</h1>
@@ -22,35 +23,118 @@
   </header>
 
   <main class="container">
+
+    <!-- VISÃO GERAL -->
     <section class="panel">
       <h2 class="panel-title">Planejamento da rotina</h2>
-      <p class="hint">Nesta fase, o planejamento é visual/documental. Formulários e automações virão depois.</p>
+      <p class="hint">
+        Nesta fase, o planejamento é visual/documental.
+        Formulários e automações serão implementados em fases futuras.
+      </p>
     </section>
 
+    <!-- CHECKLIST CONCEITUAL -->
     <section class="panel">
       <h3>Checklist do planejamento</h3>
       <ol>
-        <li>Definir períodos do dia (manhã/tarde/noite)</li>
+        <li>Definir períodos do dia (manhã, tarde, noite)</li>
         <li>Listar tarefas</li>
-        <li>Classificar (fixa/variável)</li>
+        <li>Classificar tarefas (fixa ou variável)</li>
         <li>Atribuir prioridade</li>
-        <li>Organizar por período</li>
+        <li>Organizar tarefas por período</li>
       </ol>
     </section>
 
+    <!-- FORMULÁRIO FUTURO (PLACEHOLDER) -->
+    <section class="panel">
+      <h3>Cadastro de tarefa (em breve)</h3>
+      <p class="hint">
+        A estrutura do formulário será implementada em JavaScript
+        em uma fase futura do projeto.
+      </p>
+
+      <form>
+        <fieldset disabled>
+          <legend>Dados da tarefa</legend>
+
+          <label>
+            Título
+            <input type="text" placeholder="Ex.: Estudar 30 min" />
+          </label>
+
+          <label>
+            Categoria
+            <select>
+              <option>saude</option>
+              <option>casa</option>
+              <option>trabalho</option>
+              <option>estudo</option>
+              <option>pessoal</option>
+            </select>
+          </label>
+
+          <label>
+            Prioridade
+            <select>
+              <option>p1</option>
+              <option>p2</option>
+              <option>p3</option>
+            </select>
+          </label>
+
+          <label>
+            Tipo
+            <select>
+              <option>fixa</option>
+              <option>variavel</option>
+            </select>
+          </label>
+
+          <p class="hint">Formulário desabilitado nesta fase.</p>
+        </fieldset>
+      </form>
+    </section>
+
+    <!-- MODELO DE TAREFA (ABSTRAÇÃO) -->
     <section class="panel">
       <h3>Modelo de tarefa (estrutura)</h3>
-      <article class="tarefa">
+
+      <article
+        class="tarefa"
+        data-id="modelo"
+        data-status="pendente"
+        data-tipo="variavel"
+        data-prioridade="p2"
+        data-categoria="estudo"
+        data-tem-dependencia="nao"
+      >
         <h4 class="tarefa-titulo">Exemplo: tarefa</h4>
-        <p class="tarefa-meta">Categoria | Prioridade | Tipo | Status</p>
-        <p class="tarefa-restricoes">Observações: restrições/dependências (texto).</p>
+
+        <div class="tarefa-acoes">
+          <label>
+            <input type="checkbox" disabled data-action="toggle-status" />
+            Marcar como feita (em breve)
+          </label>
+        </div>
+
+        <p class="tarefa-meta">
+          Categoria | Prioridade | Tipo | Status
+        </p>
+
+        <p class="tarefa-restricoes">
+          Observações: restrições ou dependências.
+        </p>
       </article>
     </section>
+
   </main>
 
+  <!-- FOOTER / LAYOUT BASE -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footnote">Projeto autoral — versão inicial (HTML/CSS).</p>
+      <p class="footnote">
+        Projeto autoral — versão inicial (HTML/CSS).
+      </p>
     </div>
   </footer>
 
