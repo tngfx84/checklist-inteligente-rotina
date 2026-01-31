@@ -33,6 +33,51 @@
     </section>
 
     <!-- ========================= -->
+    <!-- INTERAÇÕES FUTURAS: AÇÕES -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>Ações do dia</h3>
+      <p class="hint">Interações previstas (sem implementação nesta fase).</p>
+
+      <div class="acoes">
+        <button type="button" disabled data-action="gerar-plano">Gerar plano do dia (em breve)</button>
+        <button type="button" disabled data-action="aplicar-regras">Aplicar regras (em breve)</button>
+      </div>
+    </section>
+
+    <!-- ========================= -->
+    <!-- INTERAÇÕES FUTURAS: FILTROS -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>Filtros (em breve)</h3>
+
+      <div class="filtros">
+        <label>
+          Categoria
+          <select disabled data-filter="categoria">
+            <option>todas</option>
+          </select>
+        </label>
+
+        <label>
+          Prioridade
+          <select disabled data-filter="prioridade">
+            <option>todas</option>
+          </select>
+        </label>
+
+        <label>
+          Status
+          <select disabled data-filter="status">
+            <option>todos</option>
+          </select>
+        </label>
+      </div>
+
+      <p class="hint">Os filtros serão implementados em JavaScript em uma fase futura.</p>
+    </section>
+
+    <!-- ========================= -->
     <!-- PERÍODO: MANHÃ -->
     <!-- ========================= -->
     <section
@@ -53,6 +98,14 @@
             data-tem-dependencia="nao"
           >
             <h4 class="tarefa-titulo">Hidratar + café</h4>
+
+            <!-- Interação futura: marcar como feita -->
+            <div class="tarefa-acoes">
+              <label>
+                <input type="checkbox" disabled data-action="toggle-status" />
+                Marcar como feita (em breve)
+              </label>
+            </div>
 
             <p class="tarefa-meta">
               Categoria: Saúde | Prioridade: Alta | Tipo: Fixa | Status: Pendente
@@ -88,6 +141,14 @@
           >
             <h4 class="tarefa-titulo">Estudo (30 min)</h4>
 
+            <!-- Interação futura: marcar como feita -->
+            <div class="tarefa-acoes">
+              <label>
+                <input type="checkbox" disabled data-action="toggle-status" />
+                Marcar como feita (em breve)
+              </label>
+            </div>
+
             <p class="tarefa-meta">
               Categoria: Estudos | Prioridade: Média | Tipo: Variável | Status: Pendente
             </p>
@@ -121,6 +182,14 @@
             data-tem-dependencia="nao"
           >
             <h4 class="tarefa-titulo">Organização rápida</h4>
+
+            <!-- Interação futura: marcar como feita -->
+            <div class="tarefa-acoes">
+              <label>
+                <input type="checkbox" disabled data-action="toggle-status" />
+                Marcar como feita (em breve)
+              </label>
+            </div>
 
             <p class="tarefa-meta">
               Categoria: Casa | Prioridade: Baixa | Tipo: Variável | Status: Feita
