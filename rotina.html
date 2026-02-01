@@ -28,7 +28,7 @@
     <section class="panel">
       <h2 class="panel-title">Planejamento da rotina</h2>
       <p class="hint">
-        Nesta fase, o planejamento é visual/documental.
+        Nesta fase, o planejamento é visual e documental.
         Formulários e automações serão implementados em fases futuras.
       </p>
     </section>
@@ -36,7 +36,7 @@
     <!-- CHECKLIST CONCEITUAL -->
     <section class="panel">
       <h3>Checklist do planejamento</h3>
-      <ol>
+      <ol class="list">
         <li>Definir períodos do dia (manhã, tarde, noite)</li>
         <li>Listar tarefas</li>
         <li>Classificar tarefas (fixa ou variável)</li>
@@ -100,7 +100,7 @@
       <h3>Modelo de tarefa (estrutura)</h3>
 
       <article
-        class="tarefa"
+        class="tarefa status-pendente prioridade-p2 tipo-variavel categoria-estudo"
         data-id="modelo"
         data-status="pendente"
         data-tipo="variavel"
@@ -110,7 +110,7 @@
       >
         <h4 class="tarefa-titulo">Exemplo: tarefa</h4>
 
-        <div class="tarefa-acoes">
+        <div class="tarefa-acoes acoes">
           <label>
             <input type="checkbox" disabled data-action="toggle-status" />
             Marcar como feita (em breve)
@@ -118,7 +118,7 @@
         </div>
 
         <p class="tarefa-meta">
-          Categoria | Prioridade | Tipo | Status
+          estudo • p2 • variavel • pendente
         </p>
 
         <p class="tarefa-restricoes">
