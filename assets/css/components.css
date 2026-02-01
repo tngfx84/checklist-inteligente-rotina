@@ -1,0 +1,79 @@
+/* =========================
+   HEADER + NAVEGAÇÃO
+========================= */
+
+.site-header {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* título/brand */
+.brand {
+  font-size: 1.25rem;
+  margin: 0; /* sobrescreve margem padrão do base.css */
+}
+
+/* navegação */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.nav-link:hover {
+  border-color: #e6e6e6;
+}
+
+.nav-link.is-active {
+  border-color: #d0d0d0;
+  background: #f6f6f6;
+}
+
+/* =========================
+   PAINEL (SEÇÕES)
+========================= */
+
+.panel {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.panel-title {
+  margin: 0 0 0.5rem;
+}
+
+/* texto auxiliar */
+.hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+  border-top: 1px solid #e6e6e6;
+}
+
+.footnote {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
