@@ -217,3 +217,16 @@ select[disabled] {
   cursor: not-allowed;
   opacity: 0.6;
 }
+
+/* =========================
+   LISTA PADRÃO (COMPONENTE)
+========================= */
+
+.list {
+  padding-left: 1.2rem;
+  margin: 0;
+}
+
+.list li {
+  margin-bottom: 0.75rem;
+}
