@@ -2,13 +2,9 @@
    DASHBOARD (index.html)
 ========================= */
 
-/* organização dos períodos */
+/* organização dos períodos (ritmo entre blocos) */
 .periodo {
-  margin-bottom: 1.5rem;
-}
-
-.periodo-title {
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-5);
 }
 
 /* =========================
@@ -16,20 +12,20 @@
 ========================= */
 
 form {
-  margin-top: 1rem;
+  margin-top: var(--space-4);
 }
 
 form label {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  margin-bottom: 0.75rem;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
 }
 
 fieldset {
   border: 1px dashed #ccc;
-  padding: 1rem;
-  border-radius: 12px;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
 }
 
 /* =========================
@@ -37,11 +33,11 @@ fieldset {
 ========================= */
 
 .panel ul {
-  margin-top: 0.5rem;
+  margin-top: var(--space-2);
 }
 
 /* =========================
    REVISÃO (revisao.html)
 ========================= */
 
-/* (se não houver nada além disso, está correto) */
+/* (sem ajustes extras por enquanto) */

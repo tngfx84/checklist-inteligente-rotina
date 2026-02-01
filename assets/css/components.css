@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .brand {
@@ -23,13 +23,13 @@
 .nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .nav-link {
   display: inline-block;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
 }
 
@@ -48,17 +48,17 @@
 
 .panel {
   border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
 }
 
 .panel-title {
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--space-2);
 }
 
 .hint {
-  margin: 0.25rem 0 0;
+  margin: var(--space-1) 0 0;
   font-size: 0.95rem;
   color: #555;
 }
@@ -88,7 +88,7 @@
 }
 
 .lista-tarefas li {
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-3);
 }
 
 /* =========================
@@ -97,12 +97,12 @@
 
 .periodo {
   border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
 }
 
 .periodo-title {
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-3);
 }
 
 /* Estados do período */
@@ -127,34 +127,34 @@
 
 .tarefa {
   border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  padding: 1rem;
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
   background: #ffffff;
 }
 
 .tarefa + .tarefa {
-  margin-top: 0.75rem;
+  margin-top: var(--space-3);
 }
 
 .tarefa-titulo {
   font-size: 1rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--space-1);
 }
 
 .tarefa-meta {
   font-size: 0.9rem;
   color: #555;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 
 .tarefa-restricoes {
   font-size: 0.9rem;
   color: #666;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-2);
 }
 
 .tarefa-acoes {
-  margin-top: 0.5rem;
+  margin-top: var(--space-2);
 }
 
 /* =========================
@@ -170,8 +170,8 @@
   letter-spacing: 0.04em;
   border: 1px solid #ddd;
   border-radius: 999px;
-  padding: 0.25rem 0.5rem;
-  margin-bottom: 0.5rem;
+  padding: var(--space-1) var(--space-2);
+  margin-bottom: var(--space-2);
   color: #444;
 }
 
@@ -196,12 +196,12 @@
 .acoes {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 .acoes button {
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
   border: 1px solid #ccc;
   background: #f9f9f9;
 }
@@ -227,7 +227,7 @@ select[disabled] {
 }
 
 .list li {
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--space-3);
 }
 
 /* =========================
@@ -237,7 +237,7 @@ select[disabled] {
 .control {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
 }
 
 input[type="checkbox"] {
