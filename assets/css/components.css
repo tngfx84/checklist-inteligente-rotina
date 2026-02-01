@@ -99,7 +99,6 @@
   border: 1px solid #e6e6e6;
   border-radius: 12px;
   padding: 1rem;
-  margin-bottom: 1.5rem;
 }
 
 .periodo-title {
@@ -229,4 +228,19 @@ select[disabled] {
 
 .list li {
   margin-bottom: 0.75rem;
+}
+
+/* =========================
+   CONTROLES (CHECKBOX / LABEL)
+========================= */
+
+.control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
 }
