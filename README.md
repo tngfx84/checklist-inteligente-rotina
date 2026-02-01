@@ -62,6 +62,7 @@ checklist-inteligente-rotina/
 │  ├─ 03-wireframe.md
 │  └─ 04-pensamento-computacional-aplicado.md
 └─ README.md
+```
 
 ---
 
