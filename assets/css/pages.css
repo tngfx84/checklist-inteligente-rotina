@@ -1,0 +1,49 @@
+/* =========================
+   DASHBOARD (index.html)
+========================= */
+
+/* organização dos períodos */
+.periodo {
+  margin-bottom: 1.5rem;
+}
+
+.periodo-title {
+  margin-bottom: 0.75rem;
+}
+
+/* =========================
+   PLANEJAMENTO (rotina.html)
+========================= */
+
+form {
+  margin-top: 1rem;
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+fieldset {
+  border: 1px dashed #ccc;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+/* =========================
+   REGRAS (regras.html)
+========================= */
+
+.panel ul {
+  margin-top: 0.5rem;
+}
+
+/* =========================
+   REVISÃO (revisao.html)
+========================= */
+
+.list li {
+  margin-bottom: 0.75rem;
+}
