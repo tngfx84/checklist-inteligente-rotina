@@ -13,13 +13,13 @@
   gap: 1rem;
 }
 
-/* título/brand */
 .brand {
   font-size: 1.25rem;
-  margin: 0; /* sobrescreve margem padrão do base.css */
+  margin: 0;
 }
 
-/* navegação */
+/* Navegação */
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -43,7 +43,7 @@
 }
 
 /* =========================
-   PAINEL (SEÇÕES)
+   PAINÉIS / SEÇÕES
 ========================= */
 
 .panel {
@@ -57,7 +57,6 @@
   margin: 0 0 0.5rem;
 }
 
-/* texto auxiliar */
 .hint {
   margin: 0.25rem 0 0;
   font-size: 0.95rem;
@@ -93,14 +92,45 @@
 }
 
 /* =========================
-   CARD DE TAREFA
+   COMPONENTE: PERÍODO
+========================= */
+
+.periodo {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.periodo-title {
+  margin-bottom: 0.75rem;
+}
+
+/* Estados do período */
+
+.estado-normal {
+  background: #ffffff;
+}
+
+.estado-cheio {
+  background: #fcfcfc;
+  border-style: dashed;
+}
+
+.estado-comprometido {
+  background: #f8f8f8;
+  border-style: dashed;
+}
+
+/* =========================
+   COMPONENTE: CARD DE TAREFA
 ========================= */
 
 .tarefa {
   border: 1px solid #e6e6e6;
   border-radius: 12px;
   padding: 1rem;
-  background: #fff;
+  background: #ffffff;
 }
 
 .tarefa + .tarefa {
@@ -129,17 +159,39 @@
 }
 
 /* =========================
-   CHECKBOX / INPUTS DISABLED
+   ESTADOS VISUAIS DA TAREFA
 ========================= */
 
-input[disabled],
-select[disabled] {
-  cursor: not-allowed;
-  opacity: 0.7;
+/* Badge de status (fonte da verdade: data-status) */
+.tarefa::before {
+  content: attr(data-status);
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+  color: #444;
+}
+
+/* Prioridade (leitura lateral) */
+
+.prioridade-p1 {
+  border-left: 4px solid #d0d0d0;
+}
+
+.prioridade-p2 {
+  border-left: 4px solid #e0e0e0;
+}
+
+.prioridade-p3 {
+  border-left: 4px solid #eeeeee;
 }
 
 /* =========================
-   BOTÕES (AÇÕES FUTURAS)
+   BOTÕES / AÇÕES FUTURAS
 ========================= */
 
 .acoes {
@@ -155,75 +207,13 @@ select[disabled] {
   background: #f9f9f9;
 }
 
-button[disabled] {
+/* =========================
+   INPUTS E BOTÕES DESABILITADOS
+========================= */
+
+button[disabled],
+input[disabled],
+select[disabled] {
   cursor: not-allowed;
   opacity: 0.6;
-}
-
-/* =========================
-   ESTADOS DO PERÍODO
-========================= */
-
-/* Base visual do bloco de período */
-.periodo {
-  border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  padding: 1rem;
-}
-
-/* variações leves (sem “design final”) */
-.estado-normal {
-  background: #fff;
-}
-
-.estado-cheio {
-  background: #fcfcfc;
-  border-style: dashed;
-}
-
-.estado-comprometido {
-  background: #f8f8f8;
-  border-style: dashed;
-}
-
-/* =========================
-   BADGES / ESTADOS VISUAIS (TAREFA)
-========================= */
-
-/* formato base de “tag” */
-.tarefa::before {
-  content: attr(data-status);
-  display: inline-block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border: 1px solid #ddd;
-  border-radius: 999px;
-  padding: 0.25rem 0.5rem;
-  margin-bottom: 0.5rem;
-  color: #444;
-}
-
-/* variações por status (leves) */
-.status-feita::before {
-  content: "feita";
-  border-color: #cfcfcf;
-}
-
-.status-pendente::before {
-  content: "pendente";
-  border-color: #d9d9d9;
-}
-
-/* prioridade (sutil, sem cor forte) */
-.prioridade-p1 {
-  border-left: 4px solid #d0d0d0;
-}
-
-.prioridade-p2 {
-  border-left: 4px solid #e0e0e0;
-}
-
-.prioridade-p3 {
-  border-left: 4px solid #eeeeee;
 }
