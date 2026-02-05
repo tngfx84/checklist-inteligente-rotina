@@ -11,11 +11,32 @@
 }
 
 /* =========================
-   TOKENS (SIMPLIFICADOS)
-   (opcional, mas útil p/ consistência)
+   TOKENS (FONTE DA VERDADE)
 ========================= */
 
 :root {
+  /* cores de fundo */
+  --color-bg: #ffffff;
+  --color-bg-muted: #f6f6f6;
+  --color-bg-soft: #f8f8f8;
+  --color-bg-subtle: #fcfcfc;
+
+  /* cores de borda */
+  --color-border: #e6e6e6;
+  --color-border-strong: #d0d0d0;
+  --color-border-light: #eeeeee;
+
+  /* cores de texto */
+  --color-text: #222222;
+  --color-text-muted: #555555;
+  --color-text-soft: #666666;
+  --color-text-badge: #444444;
+
+  /* controles */
+  --color-control-bg: #f9f9f9;
+  --color-control-border: #cccccc;
+
+  /* espaçamento */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -23,6 +44,7 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
 
+  /* radius */
   --radius-sm: 8px;
   --radius-md: 12px;
 }
@@ -39,8 +61,8 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.6;
-  color: #222;
-  background-color: #fff;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 /* Hierarquia de títulos */
@@ -64,7 +86,9 @@ p {
   margin-bottom: var(--space-4);
 }
 
-/* Links e listas (discretos) */
+/* =========================
+   LINKS E LISTAS
+========================= */
 
 a {
   color: inherit;
@@ -91,10 +115,13 @@ li {
   padding: var(--space-6) var(--space-4);
 }
 
+/* =========================
+   FORM ELEMENTS BASE
+========================= */
+
 button,
 input,
 select,
 textarea {
   font: inherit;
 }
-

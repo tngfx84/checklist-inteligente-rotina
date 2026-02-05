@@ -3,7 +3,7 @@
 ========================= */
 
 .site-header {
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .site-header .container {
@@ -34,12 +34,12 @@
 }
 
 .nav-link:hover {
-  border-color: #e6e6e6;
+  border-color: var(--color-border);
 }
 
 .nav-link.is-active {
-  border-color: #d0d0d0;
-  background: #f6f6f6;
+  border-color: var(--color-border-strong);
+  background: var(--color-bg-muted);
 }
 
 /* =========================
@@ -47,7 +47,7 @@
 ========================= */
 
 .panel {
-  border: 1px solid #e6e6e6;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-4);
   margin-bottom: var(--space-4);
@@ -60,7 +60,7 @@
 .hint {
   margin: var(--space-1) 0 0;
   font-size: 0.95rem;
-  color: #555;
+  color: var(--color-text-muted);
 }
 
 /* =========================
@@ -68,13 +68,13 @@
 ========================= */
 
 .site-footer {
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid var(--color-border);
 }
 
 .footnote {
   margin: 0;
   font-size: 0.95rem;
-  color: #555;
+  color: var(--color-text-muted);
 }
 
 /* =========================
@@ -96,7 +96,7 @@
 ========================= */
 
 .periodo {
-  border: 1px solid #e6e6e6;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-4);
 }
@@ -108,16 +108,16 @@
 /* Estados do período */
 
 .estado-normal {
-  background: #ffffff;
+  background: var(--color-bg);
 }
 
 .estado-cheio {
-  background: #fcfcfc;
+  background: var(--color-bg-subtle);
   border-style: dashed;
 }
 
 .estado-comprometido {
-  background: #f8f8f8;
+  background: var(--color-bg-soft);
   border-style: dashed;
 }
 
@@ -126,10 +126,10 @@
 ========================= */
 
 .tarefa {
-  border: 1px solid #e6e6e6;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: var(--space-4);
-  background: #ffffff;
+  background: var(--color-bg);
 }
 
 .tarefa + .tarefa {
@@ -143,13 +143,13 @@
 
 .tarefa-meta {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--color-text-muted);
   margin-bottom: var(--space-2);
 }
 
 .tarefa-restricoes {
   font-size: 0.9rem;
-  color: #666;
+  color: var(--color-text-soft);
   margin-bottom: var(--space-2);
 }
 
@@ -161,32 +161,31 @@
    ESTADOS VISUAIS DA TAREFA
 ========================= */
 
-/* Badge de status (fonte da verdade: data-status) */
 .tarefa::before {
   content: attr(data-status);
   display: inline-block;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border-light);
   border-radius: 999px;
   padding: var(--space-1) var(--space-2);
   margin-bottom: var(--space-2);
-  color: #444;
+  color: var(--color-text-badge);
 }
 
-/* Prioridade (leitura lateral) */
+/* Prioridade */
 
 .prioridade-p1 {
-  border-left: 4px solid #d0d0d0;
+  border-left: 4px solid var(--color-border-strong);
 }
 
 .prioridade-p2 {
-  border-left: 4px solid #e0e0e0;
+  border-left: 4px solid var(--color-border);
 }
 
 .prioridade-p3 {
-  border-left: 4px solid #eeeeee;
+  border-left: 4px solid var(--color-border-light);
 }
 
 /* =========================
@@ -202,8 +201,8 @@
 .acoes button {
   padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
-  border: 1px solid #ccc;
-  background: #f9f9f9;
+  border: 1px solid var(--color-control-border);
+  background: var(--color-control-bg);
 }
 
 /* =========================
