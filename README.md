@@ -52,7 +52,7 @@ checklist-inteligente-rotina/
 │     ├─ pages.css      # Ajustes específicos por página
 │     └─ style.css      # Entry point (imports)
 └─ README.md
-
+```
 ---
 
 ## 🧩 Fases do desenvolvimento
