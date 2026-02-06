@@ -1,105 +1,135 @@
-# Checklist Inteligente de Rotina
+# 📘 Checklist Inteligente de Rotina
 
-Sistema para organização e execução de rotinas diárias, com foco em
-priorização, adaptação a imprevistos e revisão contínua.
+Projeto em desenvolvimento que trata a **rotina como um sistema**, aplicando **Pensamento Computacional**, boas práticas de **HTML e CSS** e uma evolução por fases bem definidas.
 
----
-
-## Problema que resolve
-Pessoas têm dificuldade em manter rotinas consistentes ao lidar com
-múltiplas tarefas, prioridades concorrentes, tempo limitado e imprevistos.
+Este repositório documenta não apenas o código, mas **o raciocínio arquitetural por trás das decisões**.
 
 ---
 
-## Objetivo
-Criar uma solução simples e evolutiva para planejar, executar e revisar
-rotinas diárias, preparada para crescer tecnicamente ao longo do tempo.
+## 🎯 Problema que o projeto resolve
+
+Pessoas têm dificuldade em manter rotinas consistentes no dia a dia devido a:
+
+- múltiplas tarefas concorrentes  
+- prioridades conflitantes  
+- tempo limitado  
+- imprevistos frequentes  
+
+O projeto propõe organizar **planejamento, execução e revisão da rotina** de forma clara, adaptável e evolutiva, tratando a rotina como um **sistema**, e não como uma simples lista de tarefas.
 
 ---
 
-## Estrutura do produto
-- **Dashboard do dia (`index.html`)**  
-  Visualização da rotina por períodos do dia e status das tarefas.
-- **Planejamento (`rotina.html`)**  
-  Organização de tarefas, prioridades e períodos.
-- **Regras (`regras.html`)**  
-  Catálogo de regras de organização e adaptação.
-- **Revisão (`revisao.html`)**  
-  Espaço para análise e aprendizado da rotina.
+## 🧠 Abordagem: Pensamento Computacional
+
+O projeto é guiado explicitamente pelos quatro pilares do Pensamento Computacional:
+
+- **Decomposição**  
+  A rotina é dividida em etapas claras: planejar, executar, aplicar regras e revisar.
+
+- **Abstração**  
+  Tarefas, períodos do dia e estados são tratados como entidades genéricas e reutilizáveis, independentes de tecnologia.
+
+- **Reconhecimento de padrões**  
+  Componentes visuais, estados e estruturas que se repetem são resolvidos uma única vez.
+
+- **Algoritmo (conceitual)**  
+  Regras e fluxos são definidos como passos claros, mesmo antes da automação.
 
 ---
 
-## Pensamento Computacional aplicado
-- **Decomposição:** o problema foi dividido em páginas que representam
-  etapas do fluxo (planejar, executar, revisar).
-- **Abstração:** tarefas foram tratadas como entidades reutilizáveis,
-  com atributos e estados bem definidos.
-- **Reconhecimento de padrões:** estados e atributos seguem padrões
-  consistentes e repetíveis.
-- **Algoritmo:** regras foram documentadas como passos claros antes
-  de qualquer automação.
-- **Organização:** separação entre produto, estilo e documentação.
+## 🗂 Estrutura do projeto
 
----
-
-## Estrutura do projeto
 ```text
 checklist-inteligente-rotina/
-├─ index.html
-├─ rotina.html
-├─ regras.html
-├─ revisao.html
+├─ index.html        # Dashboard do dia
+├─ rotina.html       # Planejamento da rotina
+├─ regras.html       # Regras do sistema
+├─ revisao.html      # Revisão do dia
 ├─ assets/
-│  ├─ css/
-│  │  ├─ style.css
-│  │  ├─ base.css
-│  │  ├─ components.css
-│  │  └─ pages.css
-├─ docs/
-│  ├─ 00-visao-geral.md
-│  ├─ 01-pensamento-computacional.md
-│  ├─ 02-regras-do-sistema.md
-│  ├─ 03-wireframe.md
-│  └─ 04-pensamento-computacional-aplicado.md
+│  └─ css/
+│     ├─ base.css        # Tokens e estilos globais
+│     ├─ components.css # Componentes reutilizáveis
+│     ├─ pages.css      # Ajustes específicos por página
+│     └─ style.css      # Entry point (imports)
 └─ README.md
-```
 
 ---
 
-## Fase 2 — HTML & CSS (Layout e Identidade Visual)
+## 🧩 Fases do desenvolvimento
 
-Nesta fase, o foco do projeto foi consolidar a interface visual do sistema,
-transformando a estrutura HTML existente em uma interface organizada,
-consistente e preparada para evolução futura.
+### ✅ Fase 1 — Estrutura e Arquitetura (HTML)
 
-### Objetivo da fase
-- Definir uma base visual estável para o projeto
-- Criar componentes reutilizáveis com CSS
-- Aplicar Flexbox para posicionamento e organização
-- Garantir consistência de tipografia, espaçamento e hierarquia visual
-- Preparar a interface para futuras interações em JavaScript, sem implementar lógica
+- Mapeamento do problema e do algoritmo conceitual  
+- Definição das páginas do sistema  
+- Estrutura semântica do HTML  
+- Separação clara entre dados, regras e interface  
+- Preparação do projeto para evolução futura  
 
-### O que foi implementado
-- Organização do CSS em camadas:
-  - `base.css` — reset, tipografia e fundação visual
-  - `components.css` — componentes reutilizáveis (painéis, cards, períodos, navegação)
-  - `pages.css` — ajustes específicos por página
-  - `style.css` como entry point (apenas imports)
-- Layout consistente nas quatro páginas do produto:
-  - Dashboard
-  - Planejamento
-  - Regras
-  - Revisão
-- Estados visuais definidos para tarefas e períodos
-- Botões, checkboxes e filtros preparados visualmente (desabilitados)
+---
 
-### O que permanece “em breve”
-- Interações (checkbox, botões, filtros)
-- Aplicação automática das regras do sistema
-- Persistência de dados
-- Implementação da lógica em JavaScript
-- Evolução para back-end (.NET)
+### ✅ Fase 2 — Identidade Visual e Layout (CSS)
 
-> Esta fase não implementa comportamento.
-> Ela estabelece uma base visual e estrutural sólida,
-> reduzindo retrabalho nas próximas etapas do projeto.
+- Consolidação do layout com CSS  
+- Criação de componentes visuais reutilizáveis  
+- Uso de Flexbox para posicionamento e organização  
+- Definição de estados visuais (sem JavaScript)  
+- Interface consistente entre todas as páginas  
+
+---
+
+### ✅ Fase 3 — Layout Global, Navegação e Sistema de Design (HTML & CSS)
+
+- Header e footer reutilizáveis em todas as páginas  
+- Navegação funcional entre páginas HTML (sem JavaScript)  
+- Sistema de variáveis CSS (`:root`) como fonte da verdade visual  
+- Uso consistente de pseudo-classes (`:hover`, `:focus-visible`, `:active`)  
+- CSS organizado em camadas (base, componentes, páginas)  
+- Layout multi-página coeso, sustentável e preparado para evoluções  
+
+---
+
+## 📌 Status atual do projeto
+
+✔ Estrutura HTML sólida  
+✔ Layout global estabilizado  
+✔ Identidade visual centralizada em variáveis  
+✔ Navegação clara e acessível  
+✔ Boas práticas reais de HTML e CSS  
+✔ Projeto pronto para evoluir sem retrabalho  
+
+---
+
+## 🔜 Próximas fases (planejadas)
+
+O projeto está preparado para evoluir em dois caminhos possíveis:
+
+### CSS mais avançado
+- responsividade ampliada  
+- temas  
+- refinamento visual  
+
+### Introdução gradual de JavaScript
+- interações simples  
+- aplicação de regras  
+- automação do sistema de rotina  
+
+Sem necessidade de refatoração estrutural.
+
+---
+
+## 👩‍💻 Sobre o projeto
+
+Este projeto faz parte de um processo de **aprendizado em público**, com foco em:
+
+- clareza arquitetural  
+- código sustentável  
+- evolução incremental  
+- portfólio técnico  
+
+Cada fase é documentada para evidenciar **o raciocínio**, não apenas o resultado final.
+
+---
+
+## 🚀 Como visualizar
+
+Basta abrir qualquer um dos arquivos `.html` no navegador e navegar entre as páginas pelo menu superior.
