@@ -38,7 +38,13 @@
 }
 
 .nav-link:focus-visible {
-  outline: 2px solid var(--color-border-strong)
+  outline: 2px solid var(--color-border-strong);
+  outline-offset: 2px;
+}
+
+.nav-link:active {
+  background: var(--color-bg-muted);
+  border-color: var(--color-border);
 }
 
 .nav-link.is-active {
