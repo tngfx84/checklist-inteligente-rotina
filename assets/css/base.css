@@ -45,8 +45,8 @@
   --space-6: 2rem;
 
   /* radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
 }
 
 /* =========================
