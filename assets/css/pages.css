@@ -30,7 +30,7 @@ form label {
 }
 
 fieldset {
-  border: 1px dashed #ccc;
+  border: 1px dashed var(--color-border);
   padding: var(--space-4);
   border-radius: var(--radius-md);
 }
