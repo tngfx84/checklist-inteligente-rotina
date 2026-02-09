@@ -43,6 +43,13 @@ fieldset {
   margin-top: var(--space-2);
 }
 
+/* REGRAS - leitura confortável */
+
+.regras main,
+.regras .panel {
+  max-width: 70ch;
+}
+
 /* =========================
    REVISÃO (revisao.html)
 ========================= */

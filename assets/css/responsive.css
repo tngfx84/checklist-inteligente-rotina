@@ -18,6 +18,19 @@
     gap: var(--space-2);
   }
 
+  .filtros {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  form,
+  fieldset,
+  input,
+  select {
+    width: 100%;
+  }
+
   .acoes button {
     width: 100%;
   }
