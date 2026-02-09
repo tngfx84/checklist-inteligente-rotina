@@ -88,6 +88,16 @@ checklist-inteligente-rotina/
 
 ---
 
+### ✅ Fase 4 — Responsividade e Publicação (HTML & CSS)
+
+- Adaptação do layout para mobile, tablet e desktop  
+- Uso consistente de unidades relativas (`rem`, `%`)  
+- Media queries aplicadas como refinamento (sem layouts paralelos)  
+- Validação de responsividade como experiência de uso  
+- Projeto publicado e acessível na web  
+
+---
+
 ## 📌 Status atual do projeto
 
 ✔ Estrutura HTML sólida  
@@ -132,4 +142,13 @@ Cada fase é documentada para evidenciar **o raciocínio**, não apenas o result
 
 ## 🚀 Como visualizar
 
-Basta abrir qualquer um dos arquivos `.html` no navegador e navegar entre as páginas pelo menu superior.
+O projeto está publicado e pode ser acessado publicamente:
+
+🔗 **URL do projeto:**  
+https://tngfx84.github.io/checklist-inteligente-rotina/
+
+Também é possível visualizar localmente abrindo qualquer um dos arquivos
+`.html` no navegador e navegando entre as páginas pelo menu superior.
+
+✔ Projeto publicado e acessível na web  
+
