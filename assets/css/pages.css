@@ -4,6 +4,15 @@
 
 /* organização dos períodos (ritmo entre blocos) */
 
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.dashboard .periodo {
+  width: 100%;
+}
 
 /* =========================
    PLANEJAMENTO (rotina.html)
