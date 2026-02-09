@@ -10,6 +10,25 @@
   padding: 0;
 }
 
+* {
+  overflow-wrap: break-word;
+}
+
+/* Evita scroll horizontal em casos de overflow */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* Evita que mídias “estourem” o container */
+img,
+svg,
+video,
+iframe {
+  max-width: 100%;
+  height: auto;
+}
+
 /* =========================
    TOKENS (FONTE DA VERDADE)
 ========================= */
