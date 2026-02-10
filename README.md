@@ -46,13 +46,21 @@ checklist-inteligente-rotina/
 ├─ regras.html       # Regras do sistema
 ├─ revisao.html      # Revisão do dia
 ├─ assets/
-│  └─ css/
-│     ├─ base.css        # Tokens e estilos globais
-│     ├─ components.css # Componentes reutilizáveis
-│     ├─ pages.css      # Ajustes específicos por página
-│     └─ style.css      # Entry point (imports)
+│  ├─ css/
+│  │  ├─ base.css        # Tokens e estilos globais
+│  │  ├─ components.css # Componentes reutilizáveis
+│  │  ├─ pages.css      # Ajustes específicos por página
+│  │  └─ style.css      # Entry point (imports)
+│  └─ js/
+│     ├─ data.js        # Domínio e constantes do sistema
+│     ├─ rules.js       # Regras puras do sistema
+│     ├─ ui.js          # Leitura e atualização do DOM
+│     ├─ storage.js     # Persistência local (localStorage)
+│     └─ main.js        # Orquestração da aplicação
+├─ docs/              # Documentação das fases
 └─ README.md
 ```
+
 ---
 
 ## 🧩 Fases do desenvolvimento
@@ -98,6 +106,22 @@ checklist-inteligente-rotina/
 
 ---
 
+### ✅ Fase 5 — Lógica e JavaScript (Sistema Funcional)
+
+- Introdução de JavaScript sem refatorar HTML ou CSS
+- Representação do domínio (tarefas, períodos, estados)
+- Regras do sistema implementadas como funções puras
+- Interface reagindo a ações do usuário (checkbox)
+- Persistência local com `localStorage`
+- Separação clara entre:
+  - dados
+  - regras
+  - UI
+  - persistência
+- Projeto deixa de ser estático e passa a funcionar como sistema
+
+---
+
 ## 📌 Status atual do projeto
 
 ✔ Estrutura HTML sólida  
@@ -105,7 +129,11 @@ checklist-inteligente-rotina/
 ✔ Identidade visual centralizada em variáveis  
 ✔ Navegação clara e acessível  
 ✔ Boas práticas reais de HTML e CSS  
-✔ Projeto pronto para evoluir sem retrabalho  
+✔ Projeto funcional em JavaScript  
+✔ Regras do sistema aplicadas automaticamente  
+✔ Interface reagindo a ações do usuário  
+✔ Estado preservado entre recarregamentos  
+✔ Arquitetura preservada e sustentável  
 
 ---
 
@@ -118,10 +146,23 @@ O projeto está preparado para evoluir em dois caminhos possíveis:
 - temas  
 - refinamento visual  
 
-### Introdução gradual de JavaScript
-- interações simples  
-- aplicação de regras  
-- automação do sistema de rotina  
+### Evoluções planejadas
+
+#### Refino de linguagem e UX
+- termos técnicos convertidos em linguagem vendável
+- mensagens de feedback mais claras
+- melhoria de leitura dos estados do sistema
+
+#### Cadastro de tarefas
+- ativação do formulário de planejamento
+- criação e edição de tarefas pelo usuário
+- renderização dinâmica no dashboard
+
+#### Evolução para back-end (.NET)
+- substituição do `localStorage` por API
+- persistência em banco de dados
+- manutenção do mesmo modelo de domínio
+  
 
 Sem necessidade de refatoração estrutural.
 
