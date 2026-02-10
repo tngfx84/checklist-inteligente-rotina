@@ -258,3 +258,16 @@ input[type="checkbox"] {
   width: 16px;
   height: 16px;
 }
+
+/* Opcional: diferenciar badge por status (sem mudar arquitetura) */
+.tarefa.status-feita::before {
+  border-style: solid;
+}
+
+.tarefa.status-bloqueada::before {
+  border-style: dashed;
+}
+
+.tarefa.status-adiada::before {
+  opacity: 0.85;
+}

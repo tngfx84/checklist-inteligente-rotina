@@ -28,7 +28,7 @@
     <section class="panel">
       <h2 class="panel-title">Dashboard do dia</h2>
       <p class="hint">
-        Versão inicial (HTML/CSS). Estrutura preparada para lógica futura.
+        Fase 3 (JavaScript). Estrutura estável; iniciando comportamento e persistência.
       </p>
     </section>
 
@@ -37,7 +37,7 @@
     <!-- ========================= -->
     <section class="panel">
       <h3>Ações do dia</h3>
-      <p class="hint">Interações previstas (sem implementação nesta fase).</p>
+      <p class="hint">Interações em evolução na Fase 3 (iniciaremos por status das tarefas).</p>
 
       <div class="acoes">
         <button type="button" disabled data-action="gerar-plano">Gerar plano do dia (em breve)</button>
@@ -95,7 +95,7 @@
             data-tipo="fixa"
             data-prioridade="p1"
             data-categoria="saude"
-            data-tem-dependencia="nao"
+            data-tem-dependencia="sim"
           >
             <h4 class="tarefa-titulo">Hidratar + café</h4>
 
@@ -103,7 +103,7 @@
             <div class="tarefa-acoes">
               <label class="control">
                 <input type="checkbox" disabled data-action="toggle-status" />
-                Marcar como feita (em breve)
+                Marcar como feita (Fase 3)
               </label>
             </div>
 
@@ -137,7 +137,7 @@
             data-tipo="variavel"
             data-prioridade="p2"
             data-categoria="estudo"
-            data-tem-dependencia="nao"
+            data-tem-dependencia="sim"
           >
             <h4 class="tarefa-titulo">Estudo (30 min)</h4>
 
@@ -145,7 +145,7 @@
             <div class="tarefa-acoes">
               <label class="control">
                 <input type="checkbox" disabled data-action="toggle-status" />
-                Marcar como feita (em breve)
+                Marcar como feita (Fase3)
               </label>
             </div>
 
@@ -187,7 +187,7 @@
             <div class="tarefa-acoes">
               <label class="control">
                 <input type="checkbox" disabled data-action="toggle-status" />
-                Marcar como feita (em breve)
+                Marcar como feita (Fase 3)
               </label>
             </div>
 
@@ -209,11 +209,11 @@
   <footer class="site-footer">
     <div class="container">
       <p class="footnote">
-        Projeto em desenvolvimento • Fase 2.4 • Thaise França — HTML/CSS.
+        Projeto em desenvolvimento • Fase 3 • Thaise França — HTML/CSS/JS.
       </p>
     </div>
   </footer>
 
-  <script src="./assets/js/main.js" defer></script>
+  <script type="module" src="./assets/js/main.js"></script>
 </body>
 </html>
