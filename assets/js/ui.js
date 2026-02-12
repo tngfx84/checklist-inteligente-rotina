@@ -40,6 +40,7 @@ export function lerTarefasDoDOM() {
         tipo: card.dataset.tipo || "",
         status: card.dataset.status || "",
         temDependencia: (card.dataset.temDependencia || "nao") === "sim",
+        dependsOnId: card.dataset.dependsOnId || null,
         periodo,
       });
     });

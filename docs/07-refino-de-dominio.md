@@ -1,39 +1,93 @@
-# Refinamento de Domínio e Linguagem de Produto (Planejado)
+# 🧩 Linguagem de Domínio e Produto (Refino Controlado)
 
-## Contexto
-Durante as fases iniciais do projeto, o foco foi consolidar
-arquitetura, layout, responsividade e publicação, sem alterar
-o modelo lógico do sistema.
+Este documento define a linguagem utilizada no sistema,
+separando:
 
-Algumas decisões de domínio e linguagem foram deliberadamente
-adiadas para evitar retrabalho e preservar a estabilidade
-estrutural do projeto.
+- valores internos (técnicos)
+- representação externa (orientada ao usuário)
 
-## Decisões consideradas (não implementadas nesta fase)
+O objetivo é preservar consistência lógica
+sem comprometer clareza de produto.
 
-### Prioridade das tarefas
-- Atual: P1 / P2 / P3
-- Alternativas avaliadas:
-  - crítica / importante / opcional
-  - alta / média / baixa
+---
 
-**Decisão:** manter nomenclatura técnica nesta fase e
-avaliar mudança na introdução de comportamento (JS).
+# 1️⃣ Princípio adotado
 
-### Status das tarefas
-- Atual: pendente / feita / adiada / bloqueada
-- Alternativa avaliada:
-  - substituir "adiada" por "reprogramada"
+Valores internos devem ser:
 
-**Motivo:** linguagem mais orientada a sistema adaptativo.
+- estáveis
+- previsíveis
+- fáceis de manipular programaticamente
 
-## Critério para implementação futura
-Essas mudanças serão aplicadas quando:
-- houver comportamento automatizado
-- o sistema passar a “decidir” e não apenas exibir
-- o foco migrar de layout para produto
+Textos exibidos ao usuário podem evoluir
+sem alterar o modelo lógico.
 
-## Impacto esperado
-- linguagem mais humana e vendável
-- maior clareza para usuários finais
-- melhor narrativa de produto no portfólio
+---
+
+# 2️⃣ Prioridade
+
+### Representação interna (atual)
+- P1
+- P2
+- P3
+
+### Representação externa (possível evolução)
+- Crítica
+- Importante
+- Opcional
+
+Decisão:
+
+Manter códigos técnicos internamente
+e aplicar dicionário de rótulos na camada de interface.
+
+---
+
+# 3️⃣ Status da tarefa
+
+### Representação interna (atual)
+- pendente
+- feita
+- adiada
+- bloqueada
+
+### Possível refinamento externo
+- adiada → reprogramada
+
+Motivo:
+"Reprogramada" comunica adaptação,
+enquanto "adiada" comunica atraso.
+
+A alteração será apenas na camada de exibição.
+
+---
+
+# 4️⃣ Separação entre Domínio e Linguagem de Produto
+
+O domínio define:
+
+- comportamento
+- regras
+- consistência
+
+A camada de produto define:
+
+- narrativa
+- experiência
+- percepção de valor
+
+Essa separação permite:
+
+- evolução de produto sem refatoração estrutural
+- adaptação a públicos diferentes
+- maturidade arquitetural
+
+---
+
+# 📌 Importante
+
+Mudanças de linguagem serão aplicadas apenas quando:
+
+- o sistema possuir comportamento automatizado
+- a decisão estiver sendo tomada pelo sistema
+- houver necessidade real de comunicação com usuário final

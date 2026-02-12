@@ -1,35 +1,103 @@
-# Evolução planejada: Lógica → JavaScript → Back-end .NET
+# 🏗️ Arquitetura Evolutiva — Lógica → JavaScript → Back-end .NET
 
-## 1) Lógica de Programação
-As regras documentadas em `regras.html` e `docs/02-regras-do-sistema.md`
-serão convertidas para:
-- pseudocódigo
-- fluxos (planejar → organizar → adaptar)
-- casos de teste (cenários de rotina)
+Este documento descreve como o projeto evolui
+de interface estática para sistema full-stack,
+preservando princípios arquiteturais desde o início.
 
-## 2) JavaScript (camada de comportamento)
-A fase JavaScript irá:
-- ler estados e atributos no DOM (`data-*` e classes)
-- aplicar regras de ordenação e adaptação
-- atualizar estados das tarefas (ex.: `data-status="feita"`)
-- habilitar interações já previstas na UI:
-  - checkbox “marcar como feita”
-  - filtros por categoria/prioridade/status
-  - botões “gerar plano do dia” e “aplicar regras”
+A evolução é incremental e orientada a domínio.
 
-## 3) Back-end .NET (camada de persistência e serviços)
-A fase .NET irá:
-- transformar os dados do domínio em modelos (DTO/Entity)
-- persistir tarefas e rotinas (histórico por data)
-- implementar regras como serviços (ex.: `RoutinePlannerService`)
-- expor endpoints para:
-  - CRUD de tarefas
-  - gerar plano do dia
-  - registrar revisão/insights
+---
 
-## 4) Portfólio (o que este projeto demonstra)
-Este repositório evidencia:
-- Pensamento Computacional aplicado (decisões rastreáveis)
-- organização e arquitetura desde o início
-- evolução por camadas (HTML/CSS → JS → .NET)
-- documentação como parte do produto (padrão profissional)
+# 1️⃣ Fase de Lógica (modelo conceitual)
+
+Antes da implementação técnica,
+as regras foram formalizadas nos documentos:
+
+- `docs/01-pensamento-computacional.md`
+- `docs/02-regras-do-sistema.md`
+
+Nesta fase:
+
+- O domínio é descrito.
+- O algoritmo é definido.
+- As decisões são registradas.
+- Não há dependência de tecnologia.
+
+Essa etapa garante que o sistema tenha núcleo lógico
+antes de qualquer automação.
+
+---
+
+# 2️⃣ Fase JavaScript — Camada de Comportamento
+
+A fase JavaScript introduz:
+
+- Leitura de estados no DOM
+- Aplicação das regras como funções puras
+- Orquestração do fluxo da aplicação
+- Persistência local via `localStorage`
+
+Separação de responsabilidades:
+
+- `data.js` → estrutura e constantes do sistema
+- `rules.js` → regras puras (núcleo lógico)
+- `ui.js` → manipulação de interface
+- `storage.js` → persistência
+- `main.js` → orquestração
+
+Essa separação antecipa uma arquitetura em camadas,
+mesmo em ambiente front-end.
+
+---
+
+# 3️⃣ Evolução para Back-end (.NET)
+
+Na fase .NET, o núcleo lógico será formalizado como domínio.
+
+Estrutura prevista:
+
+- **Domain**
+  - Entidades (Task, Period, RoutineDay)
+  - Serviços de regra (RuleEngine / PlannerService)
+- **Application**
+  - Casos de uso (GenerateDailyPlan, UpdateStatus, Reprioritize)
+- **Infrastructure**
+  - Persistência (banco de dados)
+  - Implementação de repositórios
+- **Interface**
+  - API REST
+  - Comunicação com front-end
+
+Princípios preservados:
+
+- Independência do domínio
+- Separação de responsabilidades
+- Testabilidade das regras
+
+---
+
+# 🔄 Continuidade Arquitetural
+
+O front-end atual não será descartado.
+
+Ele evolui de:
+
+Interface estática  
+→ Interface com comportamento  
+→ Cliente de API
+
+A lógica migra do JavaScript para o domínio .NET
+sem reescrita estrutural do sistema.
+
+---
+
+# 🎯 Resultado Esperado
+
+Ao final da evolução:
+
+- O sistema terá domínio formalizado.
+- As regras serão serviços testáveis.
+- A persistência será substituível.
+- A arquitetura será compatível com padrões como:
+  - Camadas tradicionais
+  - Clean Architecture (simplificada)

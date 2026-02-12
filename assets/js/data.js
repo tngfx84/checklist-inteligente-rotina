@@ -43,6 +43,7 @@ function validarValor(valor, conjunto, fallback) {
  * @property {string} tipo
  * @property {string} status
  * @property {boolean} temDependencia
+ * @property {string|null} dependsOnId
  * @property {string} periodo
  */
 
@@ -83,6 +84,7 @@ export function criarTarefa(dados) {
       STATUS.PENDENTE
     ),
     temDependencia: dados.temDependencia ?? false,
+    dependsOnId: dados.dependsOnId ?? null,
     periodo: dados.periodo,
   };
 }

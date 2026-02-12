@@ -20,10 +20,23 @@ export function marcarComoFeita(tarefa) {
  *
  * Nesta fase, dependência é binária (temDependencia: true/false).
  */
-export function aplicarRegraDeDependencia(tarefa) {
+export function aplicarRegraDeDependencia(tarefa, tarefas) {
   // Nunca sobrescreve tarefa já feita
   if (tarefa.status === STATUS.FEITA) return tarefa;
 
+  // Nova lógica: dependência real por ID
+  if (tarefa.dependsOnId) {
+    const tarefaBase = tarefas.find(t => t.id === tarefa.dependsOnId);
+
+    if (!tarefaBase || tarefaBase.status !== STATUS.FEITA) {
+      return {
+        ...tarefa,
+        status: STATUS.BLOQUEADA,
+      };
+    }
+  }
+
+  // Compatibilidade com modelo antigo (temporário)
   if (tarefa.temDependencia) {
     return {
       ...tarefa,
@@ -70,7 +83,7 @@ export function aplicarRegras(tarefas, periodos) {
 
     let tarefaAtualizada = tarefa;
 
-    tarefaAtualizada = aplicarRegraDeDependencia(tarefaAtualizada);
+    tarefaAtualizada = aplicarRegraDeDependencia(tarefaAtualizada, tarefas);
 
     if (periodo) {
       tarefaAtualizada = aplicarRegraPeriodoComprometido(

@@ -14,12 +14,18 @@ import {
 } from "./ui.js";
 
 import { criarSistema, STATUS } from "./data.js";
-import { aplicarRegras, marcarComoFeita } from "./rules.js";
+import { aplicarRegras } from "./rules.js";
+
 import {
   carregarStatusDasTarefas,
   salvarStatusDasTarefas,
   limparEstado,
 } from "./storage.js";
+
+import {
+  aplicarToggleStatus,
+  recalcularEstado,
+} from "./app.js";
 
 const SELECTORS = {
   tarefa: (id) => `article.tarefa[data-id="${id}"]`,
@@ -64,23 +70,14 @@ function salvarEstado(tarefasPorId) {
 }
 
 function atualizarUIAposMudanca(tarefasPorId, sistemaPeriodos) {
-  const tarefasAtuais = Array.from(tarefasPorId.values());
-
-  const idsFeitas = new Set(
-    tarefasAtuais.filter((t) => t.status === STATUS.FEITA).map((t) => t.id)
-  );
-
-  const tarefasRecalculadasBase = aplicarRegras(tarefasAtuais, sistemaPeriodos);
-
-  const tarefasRecalculadas = tarefasRecalculadasBase.map((t) =>
-    idsFeitas.has(t.id) ? { ...t, status: STATUS.FEITA } : t
-  );
+  const { tarefasRecalculadas, resumo } = recalcularEstado({
+    tarefasPorId,
+    periodos: sistemaPeriodos,
+  });
 
   const novoMap = new Map(tarefasRecalculadas.map((t) => [t.id, t]));
 
   sincronizarDOMComEstado(novoMap);
-
-  const resumo = gerarResumoDoDia(tarefasRecalculadas);
   renderizarResumoDoDia(resumo);
 
   salvarEstado(novoMap);
@@ -99,40 +96,34 @@ function lidarComToggleCheckbox(event, tarefasPorId, sistemaPeriodos) {
   if (!tarefaEl) return tarefasPorId;
 
   const tarefaId = tarefaEl.dataset.id || "";
-  const tarefaBase = tarefasPorId.get(tarefaId);
-  if (!tarefaBase) return tarefasPorId;
+  if (!tarefaId) return tarefasPorId;
 
-  if (tarefaBase.status === STATUS.BLOQUEADA) {
+  const { tarefasPorId: novoMap, mensagem } = aplicarToggleStatus({
+    tarefasPorId,
+    tarefaId,
+    checked: target.checked,
+    periodos: sistemaPeriodos,
+  });
+
+  if (mensagem) feedback(mensagem);
+
+  const tarefaAtual = novoMap.get(tarefaId);
+  if (tarefaAtual?.status === STATUS.BLOQUEADA) {
     target.checked = false;
-    feedback("⛔ Esta tarefa está bloqueada (dependência não atendida).");
-    return atualizarUIAposMudanca(tarefasPorId, sistemaPeriodos);
   }
 
-  if (target.checked) {
-    const tarefaFeita = marcarComoFeita(tarefaBase);
-    const novoMap = new Map(tarefasPorId);
-    novoMap.set(tarefaId, tarefaFeita);
-
-    feedback(`✅ Salvo! Tarefa feita: ${tarefaFeita.titulo}`);
-    return atualizarUIAposMudanca(novoMap, sistemaPeriodos);
-  }
-
-  const tarefaPendente = { ...tarefaBase, status: STATUS.PENDENTE };
-  const novoMap = new Map(tarefasPorId);
-  novoMap.set(tarefaId, tarefaPendente);
-
-  feedback(`↩️ Salvo! Voltou para pendente: ${tarefaPendente.titulo}`);
   return atualizarUIAposMudanca(novoMap, sistemaPeriodos);
 }
 
 /**
- * 🔁 Reinicia o dia (Fase 3.1)
+ * 🔁 Reinicia o dia
  */
 function reiniciarDia(sistemaPeriodos) {
   limparEstado();
   feedback("🔄 Dia reiniciado. Reaplicando regras...");
 
   const sistema = montarSistemaDoDOM();
+
   const tarefasComRegras = aplicarRegras(
     sistema.tarefas,
     sistema.periodos

@@ -1,38 +1,27 @@
-# Próxima fase — Preparação (refino vendável e evolução .NET)
+# 🚀 Próxima Fase — Consolidação e Evolução
 
-## Estado atual (Fase JS)
-- Dashboard funcional: tarefas mudam de status via checkbox.
-- Regras automáticas aplicadas ao carregar.
-- Persistência via localStorage (status por id).
-- Arquitetura preservada: dados / regras / UI / storage / orquestração.
+## 📌 Estado Atual
 
-## Próximas evoluções (sem escopo imediato)
+- Sistema funcional com aplicação de regras
+- Persistência local via `localStorage`
+- Separação clara entre dados, regras e interface
+- Arquitetura preservada
 
-### 1) Refino de linguagem vendável (UI)
-Objetivo: manter valores internos estáveis e melhorar textos para humanos.
+---
 
-- Criar dicionários de rótulos (ex.: `p1` → "Crítica")
-- Padronizar mensagens de feedback
-- Substituir termos técnicos por linguagem de produto:
-  - "adiada" → "reprogramada" (apenas na exibição)
-  - "p1/p2/p3" → "crítica/importante/opcional" (apenas na exibição)
+## 🔄 Evoluções Planejadas
 
-Regra: valores internos (data-*, storage) continuam usando os códigos.
+### 1️⃣ Refinamento de Linguagem (Camada de Produto)
+- Implementação de dicionários de rótulos
+- Padronização de feedback
+- Ajuste de termos voltados ao usuário final
 
-### 2) Cadastro de tarefas (rotina.html)
-Objetivo: usuário criar/editar tarefas.
+### 2️⃣ Cadastro Dinâmico de Tarefas
+- Ativação de formulário
+- Criação e renderização dinâmica
+- Persistência completa da lista
 
-- Ativar formulário (remover disabled via JS)
-- Validar campos e criar tarefa no padrão do sistema
-- Salvar lista completa de tarefas no storage
-- Renderizar tarefas dinamicamente no dashboard
-
-### 3) Evolução para back-end (.NET)
-Objetivo: trocar persistência local por API.
-
-- Manter o mesmo modelo de domínio (Tarefa, Periodo, Sistema)
-- Criar endpoints básicos:
-  - GET tarefas do dia
-  - POST nova tarefa
-  - PATCH status da tarefa
-- Persistência em banco (futuro)
+### 3️⃣ Evolução para .NET
+- Formalização do domínio
+- Implementação de API
+- Substituição da persistência local

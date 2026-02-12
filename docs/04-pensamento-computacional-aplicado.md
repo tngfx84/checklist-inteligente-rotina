@@ -1,26 +1,102 @@
-# Pensamento Computacional aplicado nas decisões do projeto
+# 🧠 Pensamento Computacional Aplicado — Rastreabilidade Arquitetural
 
-## 1) Páginas por etapa do algoritmo → Decomposição
-O sistema foi dividido em páginas que representam etapas do fluxo:
-planejar (rotina), executar (dashboard), documentar regras (regras) e revisar (revisão).
+Este documento demonstra como o Pensamento Computacional
+foi aplicado de forma concreta nas decisões estruturais do projeto.
 
-## 2) Card de tarefa padronizado → Abstração
-A tarefa foi tratada como entidade reutilizável (card) com atributos e metadados,
-independente de tecnologia. Isso facilita evolução para JavaScript e back-end.
+O objetivo é tornar explícita a relação entre:
 
-## 3) Estados com classes + data-* → Reconhecimento de padrões
-Status, prioridade, tipo e categoria são marcados com um padrão repetível:
-- classes: status-*, prioridade-*, tipo-*
-- atributos: data-status, data-prioridade, etc.
-Esse padrão permite leitura futura por JavaScript e integração com APIs.
+conceito → modelagem → implementação
 
-## 4) Catálogo de regras separado dos dados → Algoritmo
-As regras foram registradas como catálogo (documento) e não embutidas na UI.
-Isso transforma decisões em passos claros, prontos para virar funções e testes.
+---
 
-## 5) Estrutura de pastas + docs → Decomposição + Abstração
-O projeto separa responsabilidades:
-- produto (HTML)
-- estilo (CSS)
-- documentação (docs)
-Isso evidencia método e facilita manutenção/evolução.
+## 1️⃣ Decomposição aplicada à estrutura do sistema
+
+A rotina foi dividida em etapas claras,
+refletidas nas páginas do projeto:
+
+- **Planejar** → `rotina.html`
+- **Executar** → `index.html`
+- **Documentar regras** → `regras.html`
+- **Revisar** → `revisao.html`
+
+Cada página representa uma fase do algoritmo conceitual,
+não apenas uma divisão visual.
+
+---
+
+## 2️⃣ Abstração aplicada ao componente “Tarefa”
+
+A tarefa foi tratada como entidade reutilizável,
+representada por um card padronizado.
+
+A estrutura do card contém:
+
+- metadados (via `data-*`)
+- classes que representam estado
+- separação entre estrutura e comportamento
+
+Essa decisão permite:
+
+- leitura por JavaScript
+- futura serialização para API
+- evolução para modelo de domínio no back-end
+
+---
+
+## 3️⃣ Reconhecimento de padrões aplicado aos estados
+
+Estados e atributos seguem convenção previsível:
+
+- `status-*`
+- `prioridade-*`
+- `tipo-*`
+- `data-status`
+- `data-prioridade`
+
+Esse padrão não é apenas visual.
+Ele prepara o sistema para:
+
+- leitura automatizada
+- aplicação de regras
+- integração com serviços
+
+---
+
+## 4️⃣ Algoritmo aplicado ao catálogo de regras
+
+As regras do sistema foram registradas separadamente da interface.
+
+Isso garante:
+
+- clareza de decisão
+- testabilidade futura
+- independência entre UI e lógica
+
+A regra existe antes do código.
+
+---
+
+## 5️⃣ Separação estrutural como extensão da decomposição
+
+O projeto organiza responsabilidades em:
+
+- Interface (HTML)
+- Estilo (CSS)
+- Comportamento (JavaScript)
+- Documentação (docs)
+
+Essa separação evidencia intenção arquitetural,
+facilitando manutenção e evolução incremental.
+
+---
+
+# 📌 Conclusão
+
+O projeto não evolui apenas por implementação técnica,
+mas por decisões estruturadas e rastreáveis.
+
+Essa abordagem permite:
+
+- crescimento controlado
+- redução de retrabalho
+- migração futura para arquitetura formal (ex.: .NET)
