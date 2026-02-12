@@ -1,6 +1,8 @@
 // assets/js/main.js
 "use strict";
 
+import { gerarResumoDoDia } from "./stats.js";
+
 import {
   lerEstadoDiaDoDOM,
   lerPeriodosDoDOM,
@@ -8,15 +10,21 @@ import {
   habilitarCheckboxes,
   aplicarStatusNoDOM,
   feedback,
+  renderizarResumoDoDia,
 } from "./ui.js";
 
 import { criarSistema, STATUS } from "./data.js";
 import { aplicarRegras, marcarComoFeita } from "./rules.js";
-import { carregarStatusDasTarefas, salvarStatusDasTarefas } from "./storage.js";
+import {
+  carregarStatusDasTarefas,
+  salvarStatusDasTarefas,
+  limparEstado,
+} from "./storage.js";
 
 const SELECTORS = {
   tarefa: (id) => `article.tarefa[data-id="${id}"]`,
   checkboxAcao: 'input[type="checkbox"][data-action="toggle-status"]',
+  resetDia: '[data-action="reset-dia"]',
 };
 
 function montarSistemaDoDOM() {
@@ -38,8 +46,6 @@ function restaurarStatusSalvo(tarefasPorId) {
   tarefasPorId.forEach((tarefa, id) => {
     const statusSalvo = statusSalvoPorId[id];
     if (!statusSalvo) return;
-
-    // Não sobrescreve bloqueada (regra do sistema)
     if (tarefa.status === STATUS.BLOQUEADA) return;
 
     tarefasPorId.set(id, { ...tarefa, status: statusSalvo });
@@ -57,68 +63,132 @@ function salvarEstado(tarefasPorId) {
   salvarStatusDasTarefas(tarefasPorId);
 }
 
-function lidarComToggleCheckbox(event, tarefasPorId) {
-  const target = event.target;
-  if (!(target instanceof HTMLInputElement)) return;
+function atualizarUIAposMudanca(tarefasPorId, sistemaPeriodos) {
+  const tarefasAtuais = Array.from(tarefasPorId.values());
 
-  if (target.type !== "checkbox") return;
-  if (target.dataset.action !== "toggle-status") return;
+  const idsFeitas = new Set(
+    tarefasAtuais.filter((t) => t.status === STATUS.FEITA).map((t) => t.id)
+  );
+
+  const tarefasRecalculadasBase = aplicarRegras(tarefasAtuais, sistemaPeriodos);
+
+  const tarefasRecalculadas = tarefasRecalculadasBase.map((t) =>
+    idsFeitas.has(t.id) ? { ...t, status: STATUS.FEITA } : t
+  );
+
+  const novoMap = new Map(tarefasRecalculadas.map((t) => [t.id, t]));
+
+  sincronizarDOMComEstado(novoMap);
+
+  const resumo = gerarResumoDoDia(tarefasRecalculadas);
+  renderizarResumoDoDia(resumo);
+
+  salvarEstado(novoMap);
+  habilitarCheckboxes();
+
+  return novoMap;
+}
+
+function lidarComToggleCheckbox(event, tarefasPorId, sistemaPeriodos) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement)) return tarefasPorId;
+  if (target.type !== "checkbox") return tarefasPorId;
+  if (target.dataset.action !== "toggle-status") return tarefasPorId;
 
   const tarefaEl = target.closest("article.tarefa");
-  if (!tarefaEl) return;
+  if (!tarefaEl) return tarefasPorId;
 
   const tarefaId = tarefaEl.dataset.id || "";
   const tarefaBase = tarefasPorId.get(tarefaId);
-  if (!tarefaBase) return;
+  if (!tarefaBase) return tarefasPorId;
 
-  // Segurança: bloqueada não pode ser marcada
   if (tarefaBase.status === STATUS.BLOQUEADA) {
     target.checked = false;
     feedback("⛔ Esta tarefa está bloqueada (dependência não atendida).");
-    return;
+    return atualizarUIAposMudanca(tarefasPorId, sistemaPeriodos);
   }
 
-  // checked = true → feita
   if (target.checked) {
     const tarefaFeita = marcarComoFeita(tarefaBase);
-    tarefasPorId.set(tarefaId, tarefaFeita);
-    aplicarStatusNoDOM(tarefaEl, tarefaFeita.status);
-    salvarEstado(tarefasPorId);
+    const novoMap = new Map(tarefasPorId);
+    novoMap.set(tarefaId, tarefaFeita);
+
     feedback(`✅ Salvo! Tarefa feita: ${tarefaFeita.titulo}`);
-    return;
+    return atualizarUIAposMudanca(novoMap, sistemaPeriodos);
   }
 
-  // checked = false → pendente
   const tarefaPendente = { ...tarefaBase, status: STATUS.PENDENTE };
-  tarefasPorId.set(tarefaId, tarefaPendente);
-  aplicarStatusNoDOM(tarefaEl, tarefaPendente.status);
-  salvarEstado(tarefasPorId);
+  const novoMap = new Map(tarefasPorId);
+  novoMap.set(tarefaId, tarefaPendente);
+
   feedback(`↩️ Salvo! Voltou para pendente: ${tarefaPendente.titulo}`);
+  return atualizarUIAposMudanca(novoMap, sistemaPeriodos);
+}
+
+/**
+ * 🔁 Reinicia o dia (Fase 3.1)
+ */
+function reiniciarDia(sistemaPeriodos) {
+  limparEstado();
+  feedback("🔄 Dia reiniciado. Reaplicando regras...");
+
+  const sistema = montarSistemaDoDOM();
+  const tarefasComRegras = aplicarRegras(
+    sistema.tarefas,
+    sistema.periodos
+  );
+
+  let novoMap = indexarTarefasPorId(tarefasComRegras);
+
+  sincronizarDOMComEstado(novoMap);
+
+  const resumo = gerarResumoDoDia(
+    Array.from(novoMap.values())
+  );
+  renderizarResumoDoDia(resumo);
+
+  habilitarCheckboxes();
+
+  return novoMap;
 }
 
 function initApp() {
-  feedback("✅ Fase 3 (JavaScript): estado será salvo automaticamente.");
+  feedback("✅ Fase 3.1: motor lógico recalculável ativo.");
 
-  // 1) DOM → sistema
   const sistema = montarSistemaDoDOM();
+  const sistemaPeriodos = sistema.periodos;
 
-  // 2) regras automáticas
-  const tarefasComRegras = aplicarRegras(sistema.tarefas, sistema.periodos);
+  const tarefasComRegras = aplicarRegras(
+    sistema.tarefas,
+    sistema.periodos
+  );
 
-  // 3) index por id
-  const tarefasPorId = indexarTarefasPorId(tarefasComRegras);
+  let tarefasPorId = indexarTarefasPorId(tarefasComRegras);
 
-  // 4) restaurar status salvo (persistência)
   restaurarStatusSalvo(tarefasPorId);
-
-  // 5) refletir no DOM
   sincronizarDOMComEstado(tarefasPorId);
 
-  // 6) habilitar checkboxes conforme status
+  const resumo = gerarResumoDoDia(
+    Array.from(tarefasPorId.values())
+  );
+  renderizarResumoDoDia(resumo);
+
   habilitarCheckboxes();
 
-  // 7) listener único
-  document.addEventListener("change", (e) => lidarComToggleCheckbox(e, tarefasPorId));
+  document.addEventListener("change", (e) => {
+    tarefasPorId = lidarComToggleCheckbox(
+      e,
+      tarefasPorId,
+      sistemaPeriodos
+    );
+  });
+
+  const botaoReset = document.querySelector(SELECTORS.resetDia);
+  if (botaoReset) {
+    botaoReset.addEventListener("click", () => {
+      tarefasPorId = reiniciarDia(sistemaPeriodos);
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initApp);

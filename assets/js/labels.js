@@ -18,3 +18,18 @@ export const LABELS_TIPO = {
   fixa: "Fixa",
   variavel: "Variável",
 };
+
+/**
+ * Acesso seguro aos labels
+ */
+export function getLabelStatus(valor) {
+  return LABELS_STATUS[valor] ?? valor;
+}
+
+export function getLabelPrioridade(valor) {
+  return LABELS_PRIORIDADE[valor] ?? valor;
+}
+
+export function getLabelTipo(valor) {
+  return LABELS_TIPO[valor] ?? valor;
+}

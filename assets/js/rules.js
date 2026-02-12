@@ -4,8 +4,7 @@
 import { STATUS, TIPO, PRIORIDADE } from "./data.js";
 
 /**
- * Regra 1:
- * Se a tarefa for marcada como feita → atualizar status
+ * Marca tarefa como feita.
  */
 export function marcarComoFeita(tarefa) {
   return {
@@ -15,25 +14,38 @@ export function marcarComoFeita(tarefa) {
 }
 
 /**
- * Regra 2:
- * Se uma tarefa tem dependência não atendida → status bloqueada
+ * Regra 1:
+ * Se a tarefa tem dependência ativa e ainda não foi cumprida,
+ * ela fica bloqueada.
+ *
+ * Nesta fase, dependência é binária (temDependencia: true/false).
  */
 export function aplicarRegraDeDependencia(tarefa) {
+  // Nunca sobrescreve tarefa já feita
+  if (tarefa.status === STATUS.FEITA) return tarefa;
+
   if (tarefa.temDependencia) {
     return {
       ...tarefa,
       status: STATUS.BLOQUEADA,
     };
   }
+
   return tarefa;
 }
 
 /**
- * Regra 3:
+ * Regra 2:
  * Se o período estiver comprometido,
- * tarefas variáveis de baixa prioridade são adiadas
+ * tarefas variáveis de baixa prioridade são adiadas.
  */
 export function aplicarRegraPeriodoComprometido(tarefa, periodo) {
+  // Não altera tarefa já feita
+  if (tarefa.status === STATUS.FEITA) return tarefa;
+
+  // Não altera tarefa bloqueada
+  if (tarefa.status === STATUS.BLOQUEADA) return tarefa;
+
   if (
     periodo.estado === "comprometido" &&
     tarefa.tipo === TIPO.VARIAVEL &&
@@ -44,11 +56,13 @@ export function aplicarRegraPeriodoComprometido(tarefa, periodo) {
       status: STATUS.ADIADA,
     };
   }
+
   return tarefa;
 }
 
 /**
  * Aplica todas as regras do sistema
+ * Mantém previsibilidade e evita sobrescritas indevidas.
  */
 export function aplicarRegras(tarefas, periodos) {
   return tarefas.map((tarefa) => {
@@ -78,7 +92,6 @@ export function ordenarTarefas(tarefas) {
   const ordemPrioridade = { p1: 1, p2: 2, p3: 3 };
   const ordemTipo = { fixa: 1, variavel: 2 };
 
-  // copia para não mutar o array original
   return [...tarefas].sort((a, b) => {
     const pA = ordemPeriodo[a.periodo] ?? 99;
     const pB = ordemPeriodo[b.periodo] ?? 99;

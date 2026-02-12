@@ -1,7 +1,11 @@
 // assets/js/storage.js
 "use strict";
 
-const STORAGE_KEY = "checklist-rotina-v1";
+import { APP } from "./config.js";
+
+const STORAGE_KEY = APP.storageKey;
+const STORAGE_VERSION = APP.storageVersion;
+
 
 /**
  * Salva um objeto no localStorage
@@ -38,7 +42,7 @@ export function salvarStatusDasTarefas(tarefasPorId) {
   });
 
   salvarEstado({
-    version: 1,
+    version: STORAGE_VERSION,
     updatedAt: new Date().toISOString(),
     tarefas,
   });
@@ -52,4 +56,11 @@ export function carregarStatusDasTarefas() {
   const estado = carregarEstado();
   if (!estado || !estado.tarefas) return {};
   return estado.tarefas;
+}
+
+/**
+ * Limpa o estado salvo (usado no "Reiniciar dia").
+ */
+export function limparEstado() {
+  localStorage.removeItem(STORAGE_KEY);
 }

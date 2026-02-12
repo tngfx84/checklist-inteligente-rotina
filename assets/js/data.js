@@ -28,6 +28,13 @@ export const ESTADO_PERIODO = {
 };
 
 /**
+ * Validação simples para evitar status inválido.
+ */
+function validarValor(valor, conjunto, fallback) {
+  return Object.values(conjunto).includes(valor) ? valor : fallback;
+}
+
+/**
  * @typedef {Object} Tarefa
  * @property {string} id
  * @property {string} titulo
@@ -41,8 +48,8 @@ export const ESTADO_PERIODO = {
 
 /**
  * @typedef {Object} Periodo
- * @property {string} id  // manha|tarde|noite
- * @property {string} estado // normal|cheio|comprometido
+ * @property {string} id
+ * @property {string} estado
  */
 
 /**
@@ -54,17 +61,27 @@ export const ESTADO_PERIODO = {
 
 /**
  * Cria uma tarefa no formato padrão do sistema
- * @param {Object} dados
- * @returns {Object}
  */
 export function criarTarefa(dados) {
   return {
     id: dados.id,
     titulo: dados.titulo,
     categoria: dados.categoria,
-    prioridade: dados.prioridade,
-    tipo: dados.tipo,
-    status: dados.status,
+    prioridade: validarValor(
+      dados.prioridade,
+      PRIORIDADE,
+      PRIORIDADE.P3
+    ),
+    tipo: validarValor(
+      dados.tipo,
+      TIPO,
+      TIPO.VARIAVEL
+    ),
+    status: validarValor(
+      dados.status,
+      STATUS,
+      STATUS.PENDENTE
+    ),
     temDependencia: dados.temDependencia ?? false,
     periodo: dados.periodo,
   };
@@ -72,8 +89,6 @@ export function criarTarefa(dados) {
 
 /**
  * Cria o estado inicial do sistema
- * @param {Object} snapshot
- * @returns {Object}
  */
 export function criarSistema(snapshot) {
   return {

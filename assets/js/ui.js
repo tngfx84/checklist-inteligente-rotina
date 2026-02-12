@@ -77,7 +77,9 @@ export function aplicarStatusNoDOM(tarefaEl, status) {
  */
 export function habilitarCheckboxes() {
   const checkboxes = Array.from(
-    document.querySelectorAll('input[type="checkbox"][data-action="toggle-status"]')
+    document.querySelectorAll(
+      'input[type="checkbox"][data-action="toggle-status"]'
+    )
   );
 
   checkboxes.forEach((cb) => {
@@ -104,4 +106,25 @@ export function feedback(mensagem) {
 
   const alvo = document.querySelector("[data-feedback]");
   if (alvo) alvo.textContent = mensagem;
+}
+
+/**
+ * Renderiza o resumo do dia no bloco já existente no HTML.
+ * Espera este markup no index.html:
+ *  [data-resumo] com spans:
+ *   [data-resumo-total], [data-resumo-feitas], [data-resumo-criticas], [data-resumo-progresso]
+ */
+export function renderizarResumoDoDia(resumo) {
+  const root = document.querySelector("[data-resumo]");
+  if (!root) return;
+
+  const totalEl = root.querySelector("[data-resumo-total]");
+  const feitasEl = root.querySelector("[data-resumo-feitas]");
+  const criticasEl = root.querySelector("[data-resumo-criticas]");
+  const progressoEl = root.querySelector("[data-resumo-progresso]");
+
+  if (totalEl) totalEl.textContent = String(resumo.total ?? 0);
+  if (feitasEl) feitasEl.textContent = String(resumo.feitas ?? 0);
+  if (criticasEl) criticasEl.textContent = String(resumo.criticas ?? 0);
+  if (progressoEl) progressoEl.textContent = String(resumo.progresso ?? 0);
 }
