@@ -29,8 +29,55 @@
       <h2 class="panel-title">Regras do sistema</h2>
 
       <p class="hint">
-        Nesta fase (JavaScript), as regras estão sendo transformadas em funções do sistema.
-        Esta página continua como catálogo de referência — a execução automática será conectada ao Dashboard de forma gradual.
+        Esta página explica como o sistema toma decisões para reduzir esforço mental no dia a dia.
+        No Dashboard, você vê as tarefas mudando de estado (pendente, feita, adiada, bloqueada) conforme o contexto.
+        Nesta fase (3.1), o foco é tornar as decisões mais claras e confiáveis — sem “mágica escondida”.
+      </p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- COMO O SISTEMA DECIDE -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>Como o sistema decide</h3>
+      <ul>
+        <li><strong>Você não organiza apenas tarefas.</strong> O sistema ajuda a organizar <em>decisões</em> sob restrição.</li>
+        <li>Ele lê os atributos de cada tarefa (prioridade, tipo, categoria, dependência) e aplica regras.</li>
+        <li>O fluxo geral é: <strong>ler → aplicar regras → atualizar estados → mostrar na tela → salvar estado</strong>.</li>
+      </ul>
+      <p class="hint">
+        Objetivo: quando o dia ficar apertado, você não precisa “recalcular tudo na cabeça”.
+      </p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- SIGNIFICADO DOS STATUS -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>O que significam os status</h3>
+      <ul>
+        <li><strong>Pendente</strong>: tarefa planejada para o período, ainda não concluída.</li>
+        <li><strong>Feita</strong>: tarefa concluída (o sistema atualiza o progresso automaticamente).</li>
+        <li><strong>Adiada</strong>: tarefa não é essencial naquele momento e pode ser movida para depois.</li>
+        <li><strong>Bloqueada</strong>: existe um pré-requisito antes de executar essa tarefa.</li>
+      </ul>
+      <p class="hint">
+        Importante: “bloqueada” não é “proibida”. É só “ainda não faz sentido agora”.
+      </p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- PERÍODO COMPROMETIDO -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>O que é “período comprometido”</h3>
+      <ul>
+        <li>Um período comprometido significa: <strong>menos tempo/energia disponível</strong>.</li>
+        <li>Quando isso acontece, o sistema tenta <strong>reduzir ruído</strong>, adiando tarefas variáveis de baixa prioridade.</li>
+        <li>Hoje isso aparece como um estado do período (ex.: “tarde comprometida”) que dispara regras de adaptação.</li>
+      </ul>
+      <p class="hint">
+        Exemplo real: “tive reunião inesperada / deslocamento / urgência” → o sistema simplifica o plano.
       </p>
     </section>
 
@@ -40,48 +87,77 @@
     <section class="panel">
       <h3>Ordenação padrão</h3>
       <ul>
-        <li>As tarefas são organizadas primeiramente por período do dia.</li>
-        <li>Dentro de cada período, tarefas de maior prioridade vêm primeiro.</li>
-        <li>Tarefas do tipo <strong>fixa</strong> têm precedência sobre tarefas <strong>variáveis</strong>.</li>
+        <li>As tarefas são organizadas primeiro por <strong>período do dia</strong> (manhã, tarde, noite).</li>
+        <li>Dentro do período, tarefas de <strong>maior prioridade</strong> vêm primeiro.</li>
+        <li>Tarefas do tipo <strong>fixa</strong> tendem a ter precedência sobre tarefas <strong>variáveis</strong>.</li>
       </ul>
+      <p class="hint">
+        A ideia é começar pelo que é essencial antes do “opcional”.
+      </p>
     </section>
 
     <!-- ========================= -->
     <!-- REGRAS DE ADAPTAÇÃO -->
     <!-- ========================= -->
     <section class="panel">
-      <h3>Regras de adaptação</h3>
+      <h3>Regras de adaptação (quando o dia muda)</h3>
       <ul>
         <li>
-          Se um período estiver marcado como <strong>cheio</strong> ou <strong>comprometido</strong>,
-          tarefas variáveis de baixa prioridade podem ser movidas para o estado <em>adiada</em>.
+          Se um período estiver <strong>cheio</strong> ou <strong>comprometido</strong>,
+          tarefas <strong>variáveis</strong> de baixa prioridade podem mudar para <strong>adiada</strong>.
         </li>
         <li>
-          Se uma tarefa possuir dependência não atendida,
-          ela deve ser marcada com o status <strong>bloqueada</strong>.
+          Se uma tarefa tiver <strong>dependência</strong> (pré-requisito),
+          ela pode ficar com status <strong>bloqueada</strong>.
         </li>
         <li>
-          Em caso de imprevisto, uma nova tarefa extraordinária pode ser inserida,
-          e a ordem das tarefas do período deve ser recalculada.
+          Se surgir um imprevisto, o sistema deve permitir reorganizar o período sem perder o registro do que ficou para depois.
         </li>
       </ul>
+      <p class="hint">
+        Nesta fase, a adaptação já acontece; o refinamento agora é tornar o “por quê” sempre visível.
+      </p>
+    </section>
+
+    <!-- ========================= -->
+    <!-- TRANSPARÊNCIA / EXPLICABILIDADE -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>Transparência: por que o sistema fez isso?</h3>
+      <ul>
+        <li><strong>Se bloqueou:</strong> deve ficar claro <em>qual é o pré-requisito</em> (ex.: “depende de alongar”).</li>
+        <li><strong>Se adiou:</strong> deve ficar claro <em>qual foi o contexto</em> (ex.: “período comprometido”).</li>
+        <li><strong>Se reordenou:</strong> deve ficar claro <em>qual foi o critério</em> (prioridade e tipo).</li>
+      </ul>
+      <p class="hint">
+        Regra de UX: o sistema pode decidir, mas não pode “mexer escondido”.
+      </p>
     </section>
 
     <!-- ========================= -->
     <!-- REGRA DE CONSISTÊNCIA -->
     <!-- ========================= -->
     <section class="panel">
-      <h3>Regra de consistência</h3>
+      <h3>Regra de consistência (para não virar bagunça)</h3>
       <ul>
-        <li>
-          Tarefas fixas não devem ser removidas do dia.
-        </li>
-        <li>
-          Caso não possam ser executadas no período original,
-          elas podem mudar de período ou de estado,
-          mas permanecem registradas na rotina.
-        </li>
+        <li><strong>Tarefas fixas</strong> não devem simplesmente “sumir”.</li>
+        <li>Se não puderem ser executadas no período original, podem mudar de estado (ex.: adiada), mas permanecem registradas.</li>
+        <li>O sistema deve evitar o “cemitério de tarefas” (adiar eternamente) — isso será tratado nas próximas evoluções.</li>
       </ul>
+    </section>
+
+    <!-- ========================= -->
+    <!-- CONTROLE DO USUÁRIO (FUTURO PRÓXIMO) -->
+    <!-- ========================= -->
+    <section class="panel">
+      <h3>Controle do usuário (evolução planejada)</h3>
+      <ul>
+        <li>Se o usuário discordar de uma decisão (ex.: não quer adiar), ele deve poder <strong>intervir</strong>.</li>
+        <li>Exemplos de controles futuros: <em>“executar mesmo assim”</em>, <em>“reverter decisão”</em>, <em>“ignorar regra hoje”</em>.</li>
+      </ul>
+      <p class="hint">
+        Produto bom = regra clara + autonomia. O sistema ajuda, mas não manda.
+      </p>
     </section>
 
   </main>
@@ -90,7 +166,7 @@
   <footer class="site-footer">
     <div class="container">
       <p class="footnote">
-        Projeto em desenvolvimento • Fase 3 • Thaise França — HTML/CSS/JS.
+        Projeto em desenvolvimento • Fase 3.1 • Thaise França — HTML/CSS/JS.
       </p>
     </div>
   </footer>

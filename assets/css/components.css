@@ -74,6 +74,50 @@
 }
 
 /* =========================
+   RESUMO DO DIA
+========================= */
+
+.resumo-do-dia {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-bg-muted);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+}
+
+.resumo-do-dia ul {
+  list-style: none;
+  padding-left: 0;
+  margin: var(--space-2) 0 0;
+}
+
+.resumo-do-dia li {
+  margin-bottom: var(--space-1);
+  font-size: 0.95rem;
+}
+
+/* =========================
+   AÇÕES DO SISTEMA (RESET)
+========================= */
+
+.acoes-sistema {
+  margin-top: var(--space-3);
+}
+
+.acoes-sistema button {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-control-border);
+  background: var(--color-control-bg);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.acoes-sistema button:hover:not(:disabled) {
+  background: var(--color-bg-muted);
+}
+
+/* =========================
    FOOTER
 ========================= */
 
@@ -164,6 +208,17 @@
   margin-bottom: var(--space-2);
 }
 
+.tarefa-dependencia,
+.tarefa-justificativa {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-bg-muted);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+}
+
 .tarefa-acoes {
   margin-top: var(--space-2);
 }
@@ -199,8 +254,22 @@
   border-left: 4px solid var(--color-border-light);
 }
 
+/* Status visual sutil */
+
+.tarefa.status-feita::before {
+  border-style: solid;
+}
+
+.tarefa.status-bloqueada::before {
+  border-style: dashed;
+}
+
+.tarefa.status-adiada::before {
+  opacity: 0.85;
+}
+
 /* =========================
-   BOTÕES / AÇÕES FUTURAS
+   BOTÕES / AÇÕES GENÉRICAS
 ========================= */
 
 .acoes {
@@ -232,19 +301,6 @@ select[disabled] {
 }
 
 /* =========================
-   LISTA PADRÃO (COMPONENTE)
-========================= */
-
-.list {
-  padding-left: 1.2rem;
-  margin: 0;
-}
-
-.list li {
-  margin-bottom: var(--space-3);
-}
-
-/* =========================
    CONTROLES (CHECKBOX / LABEL)
 ========================= */
 
@@ -257,17 +313,4 @@ select[disabled] {
 input[type="checkbox"] {
   width: 16px;
   height: 16px;
-}
-
-/* Opcional: diferenciar badge por status (sem mudar arquitetura) */
-.tarefa.status-feita::before {
-  border-style: solid;
-}
-
-.tarefa.status-bloqueada::before {
-  border-style: dashed;
-}
-
-.tarefa.status-adiada::before {
-  opacity: 0.85;
 }

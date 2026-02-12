@@ -8,7 +8,6 @@
 </head>
 <body>
 
-  <!-- HEADER / LAYOUT BASE -->
   <header class="site-header">
     <div class="container">
       <h1 class="brand">Checklist Inteligente de Rotina</h1>
@@ -22,195 +21,416 @@
     </div>
   </header>
 
-  <!-- ESTADO DO DIA -->
   <main class="container dashboard" data-estado-dia="em_execucao">
 
+    <!-- ========================= -->
+    <!-- PAINEL PRINCIPAL -->
+    <!-- ========================= -->
     <section class="panel">
       <h2 class="panel-title">Dashboard do dia</h2>
       <p class="hint">
-        Fase 3 (JavaScript). Estrutura estável; iniciando comportamento e persistência.
+        Testes Fase 3.1: bloqueio por dependência (demo), adiamento por período comprometido,
+        resumo dinâmico, persistência e reset.
       </p>
-    </section>
 
-    <!-- ========================= -->
-    <!-- INTERAÇÕES FUTURAS: AÇÕES -->
-    <!-- ========================= -->
-    <section class="panel">
-      <h3>Ações do dia</h3>
-      <p class="hint">Interações em evolução na Fase 3 (iniciaremos por status das tarefas).</p>
-
-      <div class="acoes">
-        <button type="button" disabled data-action="gerar-plano">Gerar plano do dia (em breve)</button>
-        <button type="button" disabled data-action="aplicar-regras">Aplicar regras (em breve)</button>
-      </div>
-    </section>
-
-    <!-- ========================= -->
-    <!-- INTERAÇÕES FUTURAS: FILTROS -->
-    <!-- ========================= -->
-    <section class="panel">
-      <h3>Filtros (em breve)</h3>
-
-      <div class="filtros">
-        <label>
-          Categoria
-          <select disabled data-filter="categoria">
-            <option>todas</option>
-          </select>
-        </label>
-
-        <label>
-          Prioridade
-          <select disabled data-filter="prioridade">
-            <option>todas</option>
-          </select>
-        </label>
-
-        <label>
-          Status
-          <select disabled data-filter="status">
-            <option>todos</option>
-          </select>
-        </label>
+      <div class="resumo-do-dia" data-resumo>
+        <p><strong>Resumo do dia</strong></p>
+        <ul>
+          <li>Total: <span data-resumo-total>0</span></li>
+          <li>Concluídas: <span data-resumo-feitas>0</span></li>
+          <li>Críticas em aberto: <span data-resumo-criticas>0</span></li>
+          <li>Progresso: <span data-resumo-progresso>0</span>%</li>
+        </ul>
       </div>
 
-      <p class="hint">Os filtros serão implementados em JavaScript em uma fase futura.</p>
+      <div class="acoes-sistema">
+        <button type="button" data-action="reset-dia">🔄 Reiniciar dia</button>
+      </div>
+
+      <p class="hint" data-feedback></p>
     </section>
 
     <!-- ========================= -->
-    <!-- PERÍODO: MANHÃ -->
+    <!-- MANHÃ (normal) -->
+    <!-- Objetivo: testar dependência + prioridade + marca/desmarca -->
     <!-- ========================= -->
-    <section
-      class="periodo estado-normal"
-      data-estado-periodo="normal"
-    >
+    <section class="periodo estado-normal" data-estado-periodo="normal">
       <h3 class="periodo-title">Manhã</h3>
 
       <ul class="lista-tarefas">
+
+        <!-- 1) P1 fixa sem dependência (normal) -->
         <li>
           <article
             class="tarefa status-pendente tipo-fixa prioridade-p1 categoria-saude"
-            data-id="tarefa-001"
+            data-id="manha-01"
             data-status="pendente"
             data-tipo="fixa"
             data-prioridade="p1"
             data-categoria="saude"
-            data-tem-dependencia="sim"
+            data-tem-dependencia="nao"
           >
-            <h4 class="tarefa-titulo">Hidratar + café</h4>
-
-            <!-- Interação futura: marcar como feita -->
+            <h4 class="tarefa-titulo">Café da manhã + água</h4>
             <div class="tarefa-acoes">
               <label class="control">
-                <input type="checkbox" disabled data-action="toggle-status" />
-                Marcar como feita (Fase 3)
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
               </label>
             </div>
-
-            <p class="tarefa-meta">
-              Categoria: Saúde | Prioridade: Alta | Tipo: Fixa | Status: Pendente
-            </p>
-
-            <p class="tarefa-restricoes">
-              Observações: fazer logo ao acordar.
-            </p>
+            <p class="tarefa-meta">Saúde • P1 • Fixa</p>
           </article>
         </li>
+
+        <!-- 2) P1 fixa sem dependência (testar conclusão e persistência) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-fixa prioridade-p1 categoria-saude"
+            data-id="manha-02"
+            data-status="pendente"
+            data-tipo="fixa"
+            data-prioridade="p1"
+            data-categoria="saude"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Treino rápido (20 min)</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Saúde • P1 • Fixa</p>
+          </article>
+        </li>
+
+        <!-- 3) P2 fixa COM dependência (fica BLOQUEADA no modelo atual) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-fixa prioridade-p2 categoria-saude"
+            data-id="manha-03"
+            data-status="pendente"
+            data-tipo="fixa"
+            data-prioridade="p2"
+            data-categoria="saude"
+            data-tem-dependencia="sim"
+            data-dependencia-descricao="Treino feito antes"
+          >
+            <h4 class="tarefa-titulo">Banho (depende do treino)</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Saúde • P2 • Fixa</p>
+            <p class="tarefa-dependencia">🔒 Depende de: Treino feito antes</p>
+          </article>
+        </li>
+
+        <!-- 4) P2 variável sem dependência (normal) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-variavel prioridade-p2 categoria-trabalho"
+            data-id="manha-04"
+            data-status="pendente"
+            data-tipo="variavel"
+            data-prioridade="p2"
+            data-categoria="trabalho"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Planejar 3 prioridades do trabalho</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Trabalho • P2 • Variável</p>
+          </article>
+        </li>
+
+        <!-- 5) P3 variável sem dependência (normal; não deve adiar aqui) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-variavel prioridade-p3 categoria-pessoal"
+            data-id="manha-05"
+            data-status="pendente"
+            data-tipo="variavel"
+            data-prioridade="p3"
+            data-categoria="pessoal"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Ler 10 páginas (opcional)</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Pessoal • P3 • Variável</p>
+          </article>
+        </li>
+
       </ul>
     </section>
 
     <!-- ========================= -->
-    <!-- PERÍODO: TARDE -->
+    <!-- TARDE (comprometido) -->
+    <!-- Objetivo: testar ADIAR (variável+p3) + proteger P1/P2 + precedência BLOQUEADA -->
     <!-- ========================= -->
-    <section
-      class="periodo estado-normal"
-      data-estado-periodo="normal"
-    >
+    <section class="periodo estado-comprometido" data-estado-periodo="comprometido">
       <h3 class="periodo-title">Tarde</h3>
 
       <ul class="lista-tarefas">
+
+        <!-- 1) P1 fixa (nunca adia) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-fixa prioridade-p1 categoria-trabalho"
+            data-id="tarde-01"
+            data-status="pendente"
+            data-tipo="fixa"
+            data-prioridade="p1"
+            data-categoria="trabalho"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Reunião / compromisso crítico</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Trabalho • P1 • Fixa</p>
+          </article>
+        </li>
+
+        <!-- 2) P1 variável (não adia; prioridade alta protegida) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-variavel prioridade-p1 categoria-trabalho"
+            data-id="tarde-02"
+            data-status="pendente"
+            data-tipo="variavel"
+            data-prioridade="p1"
+            data-categoria="trabalho"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Enviar relatório (prazo hoje)</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Trabalho • P1 • Variável</p>
+          </article>
+        </li>
+
+        <!-- 3) P2 variável (não adia; regra só pega P3 variavel) -->
         <li>
           <article
             class="tarefa status-pendente tipo-variavel prioridade-p2 categoria-estudo"
-            data-id="tarefa-002"
+            data-id="tarde-03"
             data-status="pendente"
             data-tipo="variavel"
             data-prioridade="p2"
             data-categoria="estudo"
-            data-tem-dependencia="sim"
+            data-tem-dependencia="nao"
           >
-            <h4 class="tarefa-titulo">Estudo (30 min)</h4>
-
-            <!-- Interação futura: marcar como feita -->
+            <h4 class="tarefa-titulo">Revisar 1 exercício (Importante)</h4>
             <div class="tarefa-acoes">
               <label class="control">
-                <input type="checkbox" disabled data-action="toggle-status" />
-                Marcar como feita (Fase3)
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
               </label>
             </div>
-
-            <p class="tarefa-meta">
-              Categoria: Estudos | Prioridade: Média | Tipo: Variável | Status: Pendente
-            </p>
-
-            <p class="tarefa-restricoes">
-              Observações: ajustar se houver imprevisto.
-            </p>
+            <p class="tarefa-meta">Estudo • P2 • Variável</p>
           </article>
         </li>
-      </ul>
-    </section>
 
-    <!-- ========================= -->
-    <!-- PERÍODO: NOITE -->
-    <!-- ========================= -->
-    <section
-      class="periodo estado-normal"
-      data-estado-periodo="normal"
-    >
-      <h3 class="periodo-title">Noite</h3>
-
-      <ul class="lista-tarefas">
+        <!-- 4) P3 variável (deve virar ADIADA automaticamente) -->
         <li>
           <article
-            class="tarefa status-feita tipo-variavel prioridade-p3 categoria-casa"
-            data-id="tarefa-003"
-            data-status="feita"
+            class="tarefa status-pendente tipo-variavel prioridade-p3 categoria-casa"
+            data-id="tarde-04"
+            data-status="pendente"
             data-tipo="variavel"
             data-prioridade="p3"
             data-categoria="casa"
             data-tem-dependencia="nao"
           >
-            <h4 class="tarefa-titulo">Organização rápida</h4>
-
-            <!-- Interação futura: marcar como feita -->
+            <h4 class="tarefa-titulo">Organizar arquivos (Opcional)</h4>
             <div class="tarefa-acoes">
               <label class="control">
-                <input type="checkbox" disabled data-action="toggle-status" />
-                Marcar como feita (Fase 3)
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
               </label>
             </div>
-
-            <p class="tarefa-meta">
-              Categoria: Casa | Prioridade: Baixa | Tipo: Variável | Status: Feita
-            </p>
-
-            <p class="tarefa-restricoes">
-              Observações: 10 minutos.
-            </p>
+            <p class="tarefa-meta">Casa • P3 • Variável</p>
+            <p class="tarefa-justificativa">🕒 Período comprometido: P3 variáveis são reprogramadas.</p>
           </article>
         </li>
+
+        <!-- 5) P3 variável COM dependência (deve ficar BLOQUEADA; não virar ADIADA) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-variavel prioridade-p3 categoria-pessoal"
+            data-id="tarde-05"
+            data-status="pendente"
+            data-tipo="variavel"
+            data-prioridade="p3"
+            data-categoria="pessoal"
+            data-tem-dependencia="sim"
+            data-dependencia-descricao="Relatório enviado"
+          >
+            <h4 class="tarefa-titulo">Ver mensagens (depende do relatório)</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Pessoal • P3 • Variável</p>
+            <p class="tarefa-dependencia">🔒 Depende de: Relatório enviado</p>
+            <p class="tarefa-justificativa">✅ Teste: bloqueada deve prevalecer sobre adiamento.</p>
+          </article>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ========================= -->
+    <!-- NOITE (cheio) -->
+    <!-- Objetivo: testar que "cheio" não adia (por enquanto) + tarefa já FEITA para resumo -->
+    <!-- ========================= -->
+    <section class="periodo estado-cheio" data-estado-periodo="cheio">
+      <h3 class="periodo-title">Noite</h3>
+
+      <ul class="lista-tarefas">
+
+        <!-- 1) P1 fixa (normal) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-fixa prioridade-p1 categoria-saude"
+            data-id="noite-01"
+            data-status="pendente"
+            data-tipo="fixa"
+            data-prioridade="p1"
+            data-categoria="saude"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Jantar leve</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Saúde • P1 • Fixa</p>
+          </article>
+        </li>
+
+        <!-- 2) P1 variável (normal) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-variavel prioridade-p1 categoria-pessoal"
+            data-id="noite-02"
+            data-status="pendente"
+            data-tipo="variavel"
+            data-prioridade="p1"
+            data-categoria="pessoal"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Preparar o dia seguinte</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Pessoal • P1 • Variável</p>
+          </article>
+        </li>
+
+        <!-- 3) P2 variável COM dependência (bloqueada; demo) -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-variavel prioridade-p2 categoria-estudo"
+            data-id="noite-03"
+            data-status="pendente"
+            data-tipo="variavel"
+            data-prioridade="p2"
+            data-categoria="estudo"
+            data-tem-dependencia="sim"
+            data-dependencia-descricao="Mesa organizada"
+          >
+            <h4 class="tarefa-titulo">Estudar 30 min (depende de organizar mesa)</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Estudo • P2 • Variável</p>
+            <p class="tarefa-dependencia">🔒 Depende de: Mesa organizada</p>
+          </article>
+        </li>
+
+        <!-- 4) P3 variável (em "cheio" não deve adiar, regra só pega "comprometido") -->
+        <li>
+          <article
+            class="tarefa status-pendente tipo-variavel prioridade-p3 categoria-pessoal"
+            data-id="noite-04"
+            data-status="pendente"
+            data-tipo="variavel"
+            data-prioridade="p3"
+            data-categoria="pessoal"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Assistir 1 episódio (opcional)</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Pessoal • P3 • Variável</p>
+            <p class="tarefa-justificativa">✅ Teste: “cheio” ainda não adia automaticamente nesta fase.</p>
+          </article>
+        </li>
+
+        <!-- 5) já começa FEITA (pra testar resumo e persistência base) -->
+        <li>
+          <article
+            class="tarefa status-feita tipo-fixa prioridade-p2 categoria-casa"
+            data-id="noite-05"
+            data-status="feita"
+            data-tipo="fixa"
+            data-prioridade="p2"
+            data-categoria="casa"
+            data-tem-dependencia="nao"
+          >
+            <h4 class="tarefa-titulo">Organização rápida (10 min)</h4>
+            <div class="tarefa-acoes">
+              <label class="control">
+                <input type="checkbox" data-action="toggle-status" />
+                Marcar como feita
+              </label>
+            </div>
+            <p class="tarefa-meta">Casa • P2 • Fixa</p>
+            <p class="tarefa-justificativa">✅ Teste: tarefa inicial “feita” entra no resumo.</p>
+          </article>
+        </li>
+
       </ul>
     </section>
 
   </main>
 
-  <!-- FOOTER / LAYOUT BASE -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footnote">
-        Projeto em desenvolvimento • Fase 3 • Thaise França — HTML/CSS/JS.
-      </p>
+      <p class="footnote">Projeto em desenvolvimento • Fase 3.1 • Thaise França — HTML/CSS/JS.</p>
     </div>
   </footer>
 
