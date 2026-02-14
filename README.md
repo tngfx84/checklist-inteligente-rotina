@@ -1,6 +1,6 @@
 # Checklist Inteligente de Rotina
 
-Sistema em evolução que trata a rotina como um motor de decisão sob restrição, aplicando Pensamento Computacional, arquitetura modular em JavaScript e evolução incremental por fases.
+Sistema em evolução que trata a rotina como um motor de decisão sob restrição, aplicando Pensamento Computacional, arquitetura modular e evolução incremental por fases.
 
 Este projeto não documenta apenas código. Documenta decisões de engenharia.
 
@@ -36,7 +36,56 @@ O sistema:
 
 ---
 
-## Abordagem Arquitetural
+# Arquitetura Atual do Projeto
+
+O projeto possui atualmente duas implementações paralelas do mesmo domínio:
+
+## 🌐 Versão Web (HTML + CSS + JavaScript)
+
+Aplicação executada no navegador com:
+
+- Motor lógico em JavaScript
+- Persistência via localStorage
+- Interface modular
+- Regras aplicadas dinamicamente
+- Métricas recalculáveis
+
+---
+
+## 🖥 Versão Console (C#) — Fase 4.0
+
+Implementação em C# como aplicação Console, criada para consolidar fundamentos da linguagem e iniciar a transição para o ecossistema .NET.
+
+📁 Pasta: `checklist-rotina-csharp`
+
+### Como executar
+
+```bash
+cd checklist-rotina-csharp
+dotnet run
+```
+
+### Implementado na Fase 4.0
+
+- Aplicação Console via CLI .NET
+- Classe `Tarefa` com tipagem forte
+- Uso de `List<T>` para armazenar tarefas
+- Menu interativo com `switch/case`
+- Marcar tarefa como feita por ID
+- Cálculo de resumo do dia:
+  - total
+  - concluídas
+  - críticas em aberto
+  - percentual de progresso
+- Uso de `Dictionary<string, List<int>>`
+- Registro de avaliações e cálculo de média
+
+⚠️ Esta versão não possui interface gráfica nem integração com o front-end web.  
+Seu objetivo é consolidar fundamentos da linguagem C# antes da evolução para ASP.NET.
+
+---
+
+## 🌐 Abordagem Arquitetural (Versão Web)
 
 O projeto é guiado explicitamente por Pensamento Computacional.
 
@@ -53,31 +102,22 @@ Separação clara entre:
 
 ### Abstração
 
-Tarefas são entidades manipuláveis em memória.
-
+Tarefas são entidades manipuláveis em memória.  
 A interface é apenas projeção do estado.
 
 ### Reconhecimento de padrões
 
-Regras são funções puras aplicadas sobre listas.
-
+Regras são funções puras aplicadas sobre listas.  
 Nada é espalhado pelo DOM.
 
 ### Algoritmo operacional
 
-Fluxo atual do sistema:
+Fluxo atual do sistema Web:
 
-```
 ler DOM -> criar modelo -> aplicar regras ->
 gerar métricas -> atualizar interface ->
 persistir estado -> recalcular após interação
-```
 
----
-
-## Estrutura do Projeto
-
-```
 checklist-inteligente-rotina/
 ├─ index.html
 ├─ rotina.html
@@ -85,159 +125,70 @@ checklist-inteligente-rotina/
 ├─ revisao.html
 ├─ assets/
 │  ├─ css/
-│  │  ├─ base.css
-│  │  ├─ components.css
-│  │  ├─ pages.css
-│  │  └─ style.css
 │  └─ js/
-│     ├─ config.js
-│     ├─ data.js
-│     ├─ rules.js
-│     ├─ stats.js
-│     ├─ ui.js
-│     ├─ storage.js
-│     └─ main.js
+├─ checklist-rotina-csharp/
+│  ├─ Program.cs
+│  └─ checklist-rotina-csharp.csproj
 ├─ docs/
 └─ README.md
-```
+
+> Pastas `bin/` e `obj/` não fazem parte do versionamento (arquivos gerados automaticamente pelo .NET).
 
 ---
 
-## Fase Atual — 3.1  
-### Consolidação do Motor Lógico
+# Fase Atual
 
-Nesta fase o sistema evoluiu de funcional para recalculável e consistente.
+## 🌐 Web: Fase 3.1 — Consolidação do Motor Lógico
 
-### Implementado
-
-- Motor lógico reaplicável após qualquer interação
-- Bloqueio automático por dependência (modelo demonstrativo)
-- Adiamento automático sob período comprometido
+- Motor reaplicável
 - Precedência correta entre regras
-- Resumo dinâmico do dia:
-  - total de tarefas
-  - concluídas
-  - críticas em aberto
-  - percentual de progresso
-- Persistência com localStorage
-- Reset funcional do dia
-- Labels aplicados apenas na camada visual
+- Bloqueio automático por dependência
+- Adiamento sob período comprometido
+- Persistência estável
+- Reset funcional
+- Métricas dinâmicas
 - Arquitetura modular preservada
 
 ---
 
-## Comportamentos Atuais
+## 🖥 Console C#: Fase 4.0 — Fundamentos da Linguagem
 
-### Dependência (modelo atual)
-
-Se `data-tem-dependencia="sim"`:
-
-- tarefa inicia bloqueada
-- checkbox desabilitado
-- status não pode ser alterado
-
-Ainda não é dependência estrutural por ID. Essa evolução está planejada.
+- Tipagem forte
+- Coleções (`List`, `Dictionary`)
+- Estruturas de decisão
+- LINQ básico
+- Organização inicial do domínio
 
 ---
 
-### Período comprometido
+# Limitações Conscientes
 
-Se o período estiver:
+## Versão Web
 
-```
-data-estado-periodo="comprometido"
-```
+- Dependência ainda parcialmente demonstrativa
+- Sem override manual
+- Sem explicabilidade detalhada
 
-E a tarefa for:
+## Versão Console
 
-- variável
-- prioridade P3
+- Sem regras automatizadas completas
+- Sem persistência
+- Sem integração com interface
 
-Ela é automaticamente reprogramada (adiada).
-
----
-
-### Reset do dia
-
-Ao clicar em "Reiniciar dia":
-
-- a persistência é limpa
-- os status são redefinidos
-- as regras são reaplicadas
-- o resumo é recalculado
-- a interface é sincronizada
+Essas evoluções estão planejadas para as próximas fases.
 
 ---
 
-## Status Atual do Produto
+# Próxima Evolução
 
-- Motor previsível
-- Estado consistente entre memória e DOM
-- Persistência estável
-- Reset funcional
-- Métricas dinâmicas
-- Arquitetura sustentável
-- Separação clara de responsabilidades
+- Formalização do domínio em C#
+- Implementação do motor de regras em .NET
+- Evolução para ASP.NET Core
+- Criação de API
+- Integração entre front-end e back-end
 
 ---
 
-## Limitações Conscientes
-
-- Dependência ainda é booleana (não estrutural por ID)
-- Não há override manual de regra
-- Não há explicabilidade detalhada por decisão
-- Cadastro dinâmico ainda não implementado
-- Não há integração com API ou calendário
-
-Essas evoluções estão planejadas.
-
----
-
-## Próxima Evolução (3.2)
-
-Prioridades estratégicas:
-
-1. Dependências reais por ID
-2. Explicabilidade dinâmica das decisões
-3. Controle manual do usuário
-4. Estratégia anti-acúmulo
-5. Evolução para modelo -> UI
-
----
-
-## Como testar
-
-1. Marque e desmarque tarefas.
-2. Observe bloqueios automáticos.
-3. Teste período comprometido.
-4. Recarregue a página (persistência).
-5. Clique em "Reiniciar dia".
-6. Verifique o recálculo do resumo.
-
----
-
-## Sobre o Projeto
-
-Este projeto faz parte de um processo estruturado de evolução técnica que passará por:
-
-- JavaScript avançado
-- C#
-- ASP.NET Core
-- Identity
-- Arquitetura .NET
-- Testes automatizados
-- DevOps
-- Microsserviços
-- Docker
-- Kubernetes
-
-A meta não é apenas concluir um app.  
-É construir um sistema evolutivo com maturidade arquitetural crescente.
-
----
-
-## Visualização
-
-Projeto publicado:
+# Visualização (Versão Web)
 
 https://tngfx84.github.io/checklist-inteligente-rotina/

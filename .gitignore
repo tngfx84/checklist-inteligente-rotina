@@ -1,2 +1,9 @@
+# .NET (não versionar build artifacts)
+**/bin/
+**/obj/
+
+# VS Code
+.vscode/
+
 # macOS
 .DS_Store
